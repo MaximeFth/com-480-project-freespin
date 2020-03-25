@@ -32,7 +32,7 @@ Frame the general topic of your visualization and the main axis that you want to
 - Think of an overview for the project, your motivation, and the target audience.
 
 **We could show different things, like dominance of a player, depending on his "body" (height and weight) and show correlations/deductions that could happen, even if some are pretty obvious (like really tall players tend to get more rebounds)**
-**Also, we could find a "fancy way" to show the best players by a ranking, based obivously on their performances but also titles (and maybe sort them by where they come from, their salaries ?)
+**Also, we could find a "fancy way" to show the best players by a ranking, based obivously on their performances but also titles (and maybe sort them by where they come from, their salaries ?)**
 
 ### Exploratory Data Analysis ###
 
