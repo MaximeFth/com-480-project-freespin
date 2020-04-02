@@ -49,7 +49,7 @@ We keep in mind that this is not an easy task. Not technically but finding a way
 
 **Another point for our overview of this project was to make an interactive map of the United States, where it could be possible to see, overall and season by season (even some smaller period ?), the performances of teams (and players ?) with a color code and by clicking on a state we could see which opponents were the easiest or toughest (with another color code) for example**
 
-**Why basketball and more precisely NBA ? Well, as 2 of us are basketball players and quite obviously huge fans of the NBA, we know this a sport with a lot (really, a lot) of stats. You can't watch a single NBA game without seeing a statisitic about a player, a record being approached, broken or set, so we know that there is something to work with.**
+**Why basketball and more precisely NBA ? Well, as 2 of us are basketball players and quite obviously huge fans of the NBA, we know this is a sport with a lot (really, a lot) of stats. You can't watch a single NBA game without seeing a statisitic about a player, a record being approached, broken or set, so we know that there is something to work with.**
 
 **This is a group of 3, and our last (but not least !) member, despite not having a huge background in basketball, actually found a great interest in the project ! And having another point of view, more outside of the basketball world, with new ideas and analysis, is definitely a plus to make a more accessible work to everyone and not only basketball fans.**
 
@@ -60,7 +60,7 @@ We keep in mind that this is not an easy task. Not technically but finding a way
 Pre-processing of the data set you chose:
 
 - Show some basic statistics and get insights about the data
-Here is the firsts rows of our player Dataset that contains a bit less than 4000 different players whose careers covers the years 1950 to 2017. We have in addition 3 others Dataset containing more informations such as all in-game statistics (3pts rate, 2pts rate, rebounds, etc.. ) and also datasets containing more physical informations about them such as their weight, height, birth state, college etc...
+**Here is the firsts rows of our player Dataset that contains a bit less than 4000 different players whose careers covers the years 1950 to 2017. We have in addition 3 others Dataset containing more informations such as all in-game statistics (3pts rate, 2pts rate, rebounds, etc.. ) and also datasets containing more physical informations about them such as their weight, height, birth state, college etc...**
 
 **Here is the Player Dataset:**
 
