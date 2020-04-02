@@ -70,15 +70,15 @@ Here is the firsts rows of our player Dataset that contains a bit less than 4000
 
 **Drafted Players height mean / year:**
 
-![Alt text](images/meanHeightPerDraft.png?raw=true)
+**![Alt text](images/meanHeightPerDraft.png?raw=true)**
 
 **3Pts shot succeeded / year:**
 
-![Alt text](images/3PtsMadePerYear.png?raw=true)
+**![Alt text](images/3PtsMadePerYear.png?raw=true)**
 
 
 **Dwyane Wade / Kobe Bryant  2pts over the years**
-![Alt text](images/WadeVsBryant.png?raw=true)
+**![Alt text](images/WadeVsBryant.png?raw=true)**
 
 ### Related work ###
 
