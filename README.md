@@ -47,7 +47,7 @@ Frame the general topic of your visualization and the main axis that you want to
 **We'd also like to find a way to sort out a kind of ranking between the players, based on their performances but also titles (and maybe by where they come from, their salaries, age,...).
 We keep in mind that this is not an easy task. Not technically but finding a way to rank the players has to relate on a basis, and obviously we may not be completely unbiased since we have our preferences.**
 
-**Another point for our overview of this project was to make an interactive map of the United States, where it could be possible to see, overall and season by season (even some smaller period ?) their performances with a color code and by clicking on a state we could see which opponents were the easiest or toughest (with another color code maybe)**
+**Another point for our overview of this project was to make an interactive map of the United States, where it could be possible to see, overall and season by season (even some smaller period ?), the performances of teams (and players ?) with a color code and by clicking on a state we could see which opponents were the easiest or toughest (with another color code) for example**
 
 **Why basketball and more precisely NBA ? Well, as 2 of us are basketball players and quite obviously huge fans of the NBA, we know this a sport with a lot (really, a lot) of stats. You can't watch a single NBA game without seeing a statisitic about a player, a record being approached, broken or set, so we know that there is something to work with.**
 
