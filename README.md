@@ -64,24 +64,23 @@ Here is the firsts rows of our player Dataset that contains a bit less than 4000
 
 **Here is the Player Dataset:**
 
-**![Alt text](images/dataset.png?raw=true "Player's Dataset")**
+**![ScreenShot](images/dataset.png?raw=true "Player's Dataset")**
 
 **Here are some example of statistics we extracted of the datasets:**
 
 **Drafted Players height mean / year:**
 
-**![Alt text](images/meanHeightPerDraft.png?raw=true)**
-
+**![ScreenShot](images/meanHeight.png?raw=true)**
 
 
 **Dwyane Wade / Kobe Bryant  2pts over the years**
 
-**![Alt text](images/BryantVsWade.png?raw=true)**
+**![ScreenShot](images/BryantVsWade.png?raw=true)**
 
 
 **3Pts shot succeeded / year:**
 
-**![Alt text](images/threePoints.png?raw=true)**
+**![ScreenShot](images/threePoints.png?raw=true)**
 
 ### Related work ###
 
