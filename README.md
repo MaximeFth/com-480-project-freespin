@@ -85,10 +85,22 @@ Pre-processing of the data set you chose:
 
 ### Related work ###
 
-- What others have already done with the data?
-- Why is your approach original?
-- What source of inspiration do you take? Visualizations that you found on other websites or magazines (might be unrelated to your data).
-- In case you are using a dataset that you have already explored in another context (ML or ADA course, semester project...), you are -  required to share the report of that work to outline the differences with the submission for this class.
+As the dataset is driven from Kaggle, in addition to the dataset, some related works are also provided. For each dataset, we’d like to describe which analysis are already done with the dataset.
+
+#### nba-players-data/
+- There’s a work done by the author of the dataset : NBA Height and Weight Analysis. The analysis he proposed with his dataset is indeed “how age/height/weight tendencies have changed over time”. First, he showed the distribution of height and weight pointing out also the NBA mean and the average US Male Adult for each attribute and proved that they have a high correlation (0,839) between them. He showed how the average height and weight is changed over season and over country. Finally he showed the impact of height and weight on performance using average number of points, rebounds grabbed, assists distributed.
+
+#### nba-players-stats/
+- Height and Weight Animation : It’s an animated work which plots a scatter plot Height against Weight for 5 different positions (PG: Point Guard, SG: Shooting Guard, SF: Small Forward, PF: Power Forward, C: Center) for each year (from 1990 to 2017). And between each graph, we see how the height-weight points of each position differs.
+- NBA Data Exploration & Visualization : It plots Top20 players with their total points marked during their entire career with Kareem Abdul-Jabbar at first place. It tries to discover the correlation between the points and stats value using correlation matrix. And it shows that there is indeed some positive correlation between height&weight with the points.
+- The greatest players of all time : It plots Top 10 players for Points per Game, Assists per Game, Rebounds per Game : in this way we can compare different players taking in account intangibles aspects affecting the flow of a game.
+- Salary Cluster Analysis of NBA Players : First the clustering of the players have been done to 4 categories of performance (Excellent, Good, Average, Below Average) using different model (Hierarchical Clustering to choose the value of K, then K-Means Clustering). Then it plots the scatterplot of performance-salary.
+- Salary Prediction using Multiple Regression : First, using correlation plot, it checks which attribute is the most correlated with the salary : PPG (Points Per Game : PTS/G), MPG (Minutes Played Per Game : MP/G), TOPG(TurnOvers Per Game : TOV/G), RPG (Total Rebounds Per Game : TRB/G), PER (Player Efficiency Rating), SPG (Steals Per Game : STL/G), APG(Assist Percentage per Game : AST/G). Then it uses a linear regression model to predict the salary.
+
+If these cited above related works have done some works showing interesting graphs about height-weight, top players, salary, etc., as we’ve described above in our problematic, we’d like to make these data more dynamic and interactive so that the users can tackle the data on their own and they could get more easily the results of what they are looking for.
+
+It is the first time for us to explore these datasets, i.e. we didn’t use these datasets for any other context. And we are all enthusiast to make these datasets more valuable with a great visualization.
+
 
 ## Milestone 2 (Friday 1st May, 5pm)
 
