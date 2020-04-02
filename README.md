@@ -74,7 +74,7 @@ Here is the firsts rows of our player Dataset that contains a bit less than 4000
 
 **3Pts shot succeeded / year:**
 
-**![Alt text](images/threePoints.png?raw=true)**
+**![Alt text](images/threePointsOverTheYears.png?raw=true)**
 
 **Dwyane Wade / Kobe Bryant  2pts over the years**
 
