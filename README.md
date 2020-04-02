@@ -71,7 +71,7 @@ Drafted Players height mean / year:
 ![Alt text](images/3PtsMadePerYear.png?raw=true)
 
 Dwyane Wade / Kobe Bryant  2pts over the years
-![Alt text](/relative/path/to/images/WadeVsBryant.png?raw=true)
+![Alt text](images/WadeVsBryant.png?raw=true)
 
 ### Related work ###
 
