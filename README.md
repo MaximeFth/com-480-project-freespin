@@ -60,6 +60,18 @@ We keep in mind that this is not an easy task. Not technically but finding a way
 Pre-processing of the data set you chose:
 
 - Show some basic statistics and get insights about the data
+Here is the firsts rows of our player Dataset that contains a bit less than 4000 different players whose careers covers the years 1950 to 2017. We have in addition 3 others Dataset containing more informations such as all in-game statistics (3pts rate, 2pts rate, rebounds, etc.. ) and also datasets containing more physical informations about them such as their weight, height, birth state, college etc...
+Here is the Player Dataset:
+
+![Alt text](/relative/path/to/images/dataset.png?raw=true "Player's Dataset")
+Here are some example of statistics we extracted of the datasets:
+Drafted Players height mean / year:
+![Alt text](/relative/path/to/images/meanHeightPerDraft.png?raw=true)
+3Pts shot succeeded / year:
+![Alt text](/relative/path/to/images/3PtsMadePerYear.png?raw=true)
+
+Dwyane Wade / Kobe Bryant  2pts over the years
+![Alt text](/relative/path/to/images/WadeVsBryant.png?raw=true)
 
 ### Related work ###
 
