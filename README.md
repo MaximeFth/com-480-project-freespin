@@ -116,8 +116,44 @@ It is the first time for us to explore these datasets, i.e. we didn’t use thes
 
 **10% of the final grade**
 
+Two A4 pages describing the project goal.
 
+- Include sketches of the vizualiation you want to make in your final product.
+- List the tools that you will use for each visualization and which (past or future) lectures you will need.
+- Break down your goal into independent pieces to implement. Try to design a core visualization (minimal viable product) that will be required at the end.
+- Then list extra ideas (more creative or challenging) that will enhance the visualization but could be dropped without endangering the meaning of the project.
 
+Functional project prototype review.
+
+- You should have an initial website running with the basic skeleton of the visualization/widgets.
+
+**Changes due to comments on the first milestone**
+
+First of all, we decided to set the idea of the body visualization (with the height and weight of the players) as the more challenging extra idea. Thus we moved to a more "classic" visualization that allow us to show performance of players on the both sides of the court but also all categories separatly.
+The way we plan to do it is using a Sankey Diagram, where on the left side we have one or more players, in the middle attack and defense and on the right all the categories (points, asssits, rebounds,...).
+In the case of a single player, it allows to see where his impact on the game is, if he is a scorer, someone that makes his teammates shine or even a beast that will protect his rim at all cost.
+When adding players to the visualization, we can then compare what role each of them has in the team, the contribution in the games.
+As an exemple, taking a full team like **[Choose a team that suits well]** the diagram would look like something like this :
+### Add sketches ###
+We think this is a great and intuitive way to play with the data and have a look at the performances of players
+
+Aside of that, we want to keep our idea of the interactive map, but instead of showing another time something related with performance, we thought about showing links or bounds between states (thus franchises).
+It may seems unclear but we could see where a players played during his career, choosing Lebron James for exemple, who played for the Cavaliers, the Heat and for the Lakers. It could be a way to visualize trades, but also decisions that had a huge impact in the history of the NBA (for fans it is a really important subject).
+That map could then contains all the trades that happened between two season **[Still have to take a closer look at the data]**, see what franchises have had the most players playing for them, and even more.
+### Add sketches
+
+Now that our goals are set, obviously the tools that we're gonna use are the tow following visualization method :
+- Sankey Diagram
+- Map (connection, bubble map and maybe choropleth )
+### More details about the tools, developp this section
+
+The extra idea will be the human body visualization as explained in the first milestone
+
+### To do
+- Breakdown of goals and design of core visualization
+- Functionnal website
+- More work with data
+- Rewrite of the whole project in order to fulfill what is asked for the milestone 2
 
 ## Milestone 3 (Thursday 28th May, 5pm)
 
