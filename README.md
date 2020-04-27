@@ -133,17 +133,22 @@ First of all, we decided to set the idea of the body visualization (with the hei
 The way we plan to do it is using a Sankey Diagram, where on the left side we have one or more players, in the middle attack and defense and on the right all the categories (points, asssits, rebounds,...).
 In the case of a single player, it allows to see where his impact on the game is, if he is a scorer, someone that makes his teammates shine or even a beast that will protect his rim at all cost.
 When adding players to the visualization, we can then compare what role each of them has in the team, the contribution in the games.
-As an exemple, taking a full team like **[Choose a team that suits well]** the diagram would look like something like this :
-### Add sketches ###
+As an exemple, taking a team formed of 5 players the diagram would look like something like this :
+**![ScreenShot](images/SankeySketch1.png?raw=true)**
+Or like this, allowing to have a better understanding of the performance directly looking at the stats
+**![ScreenShot](images/SankeySketch2.png?raw=true)**
 We think this is a great and intuitive way to play with the data and have a look at the performances of players
 
 Aside of that, we want to keep our idea of the interactive map, but instead of showing another time something related with performance, we thought about showing links or bounds between states (thus franchises).
 It may seems unclear but we could see where a players played during his career, choosing Lebron James for exemple, who played for the Cavaliers, the Heat and for the Lakers. It could be a way to visualize trades, but also decisions that had a huge impact in the history of the NBA (for fans it is a really important subject).
 That map could then contains all the trades that happened between two season **[Still have to take a closer look at the data]**, see what franchises have had the most players playing for them, and even more.
-### Add sketches
+Lebron James Franchises :
+**![ScreenShot](images/LebronJamesTrades.png?raw=true)**
+
+## ADD MORE ?
 
 Now that our goals are set, obviously the tools that we're gonna use are the tow following visualization method :
-- Sankey Diagram
+(- Sankey Diagram) Done 
 - Map (connection, bubble map and maybe choropleth )
 ### More details about the tools, developp this section
 
