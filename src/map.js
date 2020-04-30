@@ -1,3 +1,6 @@
+
+/*<!-- Source for the map diagram inspiration code : http://bl.ocks.org/NPashaP/a74faf20b492ad377312 -->
+*/
 function tooltipHtml(n, d){ /* function to create html content string in tooltip div. */
     return "<h4>"+n+"</h4><table>";
   }
