@@ -4,62 +4,44 @@
 <head>
   <meta charset="utf-8">
   <script src="https://d3js.org/d3.v3.min.js"></script>
-
   <meta name="author" content="Jeanmonod Xavier, Fellrath Maxime, Yura Tak">
   <meta name="description" content="NBA visualisation">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
   <link href="style.css" rel="stylesheet">
-
-
-  
 </head>
 
 <body>
-    <div id="headBand"></div>
-
+<div id="headBand"></div>
   <div id ="title">
-    <ul>
+  <ul>
   <font size = "4">
-   <li><a class="menuButtons" href="index.html">Home</a></li>
-
-    <li><a class="menuButtons" href="sankeyDiagram.html">Sankey Diagrams</a></li>
-    <li><a class="menuButtons" href="map.html">USA Map</a></li>
+  <li><a class="menuButtons" href="index.html">Home</a></li>
+  <li><a class="menuButtons" href="sankeyDiagram.html">Sankey Diagrams</a></li>
+  <li><a class="menuButtons" href="map.html">USA Map</a></li>
   </font>
-
   </ul>
-  </div>
-<div id="content">
-  <div id ="mapVisu">
-  <img src="images/usaMap2.png" height="100%" width = "100%">
-
-  </div>
-  <div id="features">
-    <div id="choice">
-
- 
-
-
-
-<form action="" method="post" target="_blank">
-<font size="5">
-  <p>Player's name: <input type="text" name="name" value="">
-<input type="submit" value="Enter"></font>
-
-
-  </p>
-
-</form>
-
-
-
-
-
-    </div>
-  </div>
 </div>
-    
+
+<div id="content">
+<div id ="mapVisu">
+  <div id="tooltip"></div><!-- div to hold tooltip. -->
+  <svg width="960" height="600" id="statesvg"></svg> <!-- svg to hold the map. -->
+  <script src="uStates.js"></script> <!-- creates uStates. -->
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src = "map.js"></script>
+</div>
+
+<div id = "features">
+<div id="choice">
+  <form action="" method="post" target="_blank">
+  <font size="5">
+    <p>Player's name: <input type="text" name="name" value="">
+  <input type="submit" value="Enter"></font>
+  </p>
+  </form>
+</div>
+</div>
+</div>
 </body>
 
 </html>
