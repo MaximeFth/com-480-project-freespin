@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="author" content="Jeanmonod Xavier, Fellrath Maxime, Yura Tak">
+  <meta name="description" content="NBA visualisation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <link href="style.css" rel="stylesheet">
+
+
+  
+</head>
+
+<body>
+    <div id="headBand"></div>
+
+  <div id ="title">
+    <ul>
+  <font size = "4">
+   <li><a class="menuButtons" href="index.html">Home</a></li>
+
+    <li><a class="menuButtons" href="sankeyDiagram.html">Sankey Diagrams</a></li>
+    <li><a class="menuButtons" href="map.html">USA Map</a></li>
+  </font>
+  </ul>
+  </div>
+<div id="content">
+  <div id ="sankeyVisu">
+    <img src="images/SankeySketch.png" alt="Sankey Diagram Example" height="100%" width="100%">
+
+  </div>
+  <div id="features">
+    <div id="choice">
+<font size="5">
+      <label for="team-select">Which Team?</label>
+
+      <select name="Teams" id="teamSelect">
+      <option value="">--Please choose a Team--</option>
+      <option value="Los Angeles Lakers">Los Angeles Lakers</option>
+      <option value="Chicago Bulls">Chicago Bulls</option>
+      <option value="Golden State Warriors">Golden State Warriors</option>
+      <option value="Toronto Raptors">Toronto Raptors</option>
+      <option value="Houston Rockets">Houston Rockets</option>
+      <option value="San Antonio Spurs">San Antonio Spurs</option>
+  </select>
+
+        <label for="season">Which Season?</label>
+
+      <select name="Season" id="seasonSelect">
+      <option value="">--Please choose a Season--</option>
+      <option value="1985-1986">1985-1986</option>
+       <option value="1986-1987">1986-1987</option>
+
+  </select>
+</font>
+
+ 
+
+    </div>
+  </div>
+</div>
+    
+</body>
+
+</html>
