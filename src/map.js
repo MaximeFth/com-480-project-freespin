@@ -12,11 +12,7 @@ function tooltipHtml(n, d){ /* function to create html content string in tooltip
   "CO", "NM", "OR", "ND", "SD", "NE", "IA", "MS", "IN", "IL", "MN", 
   "WI", "MO", "AR", "OK", "KS", "LS", "VA"]
     .forEach(function(d){ 
-      var low=Math.round(100*Math.random()), 
-        mid=Math.round(100*Math.random()), 
-        high=Math.round(100*Math.random());
-      sampleData[d]={low:d3.min([low,mid,high]), high:d3.max([low,mid,high]), 
-          avg:Math.round((low+mid+high)/3), color:d3.interpolate("#ffffcc", "#800026")(low/100)}; 
+      sampleData[d]={ color:"rgba(114, 123, 228, 1)"}; 
     });
   
   /* draw states on id #statesvg */ 
