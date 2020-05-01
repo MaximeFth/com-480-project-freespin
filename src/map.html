@@ -4,6 +4,7 @@
 
 <head>
   <meta charset="utf-8">
+
   <script src="https://d3js.org/d3.v3.min.js"></script>
   <meta name="author" content="Jeanmonod Xavier, Fellrath Maxime, Yura Tak">
   <meta name="description" content="NBA visualisation">
@@ -12,34 +13,91 @@
 </head>
 
 <body>
-<div id="headBand"></div>
+  <div id="headBand"></div>
   <div id ="title">
-  <ul>
-  <font size = "4">
-  <li><a class="menuButtons" href="index.html">Home</a></li>
-  <li><a class="menuButtons" href="sankeyDiagram.html">Sankey Diagrams</a></li>
-  <li><a class="menuButtons" href="map.html">USA Map</a></li>
-  </font>
-  </ul>
-</div>
+    <ul>
+      <font size = "4">
+        <li><a class="menuButtons" href="index.html">Home</a></li>
+        <li><a class="menuButtons" href="sankeyDiagram.html">Sankey Diagrams</a></li>
+        <li><a class="menuButtons" href="map.html">USA Map</a></li>
+      </font>
+    </ul>
+  </div>
 
-<div id="content">
-<div id ="mapVisu">
-  <div id="tooltip"></div><!-- div to hold tooltip. -->
-  <svg width="960" height="600" id="statesvg"></svg> <!-- svg to hold the map. -->
-  <script src="uStates.js"></script> <!-- creates uStates. -->
-  <script src="https://d3js.org/d3.v3.min.js"></script>
-  <script src = "map.js"></script>
-</div>
+  <div id="content">
+    <div id ="mapVisu">
+      <div id="tooltip"></div>
+      <svg width="960" height="600" id="statesvg"></svg> 
+      <svg width="960" height="600" id="statesvg2"></svg> 
 
-<div id = "featuresMap">
-<div id="choice">
-  <form action="" method="post" target="_blank">
-  <font size="5">
-    <p>Player's name: <input type="text" name="name" value="">
-  <input type="submit" value="Enter"></font>
-  </p>
-  </form>
+      <script src="uStates.js"></script>
+      <script src="map.js"></script>
+    </div>
+
+    <div id = "featuresMap">
+      <div id="choice">
+        <form name="playerName" onSubmit="return readPlayer()">
+          <input name="Submit"  type="submit" value="submit" >
+          <input type="text" id="playerName" placeholder="Enter Player Name">
+        </form>
+        <script>
+        function readPlayer(event){
+          statesvg.remove();
+          var state = "";
+          d3.csv("DATA/nba-players-data/all_seasons.csv", function(data) {
+            var name = document.getElementById("playerName").value.toUpperCase();
+            for (var i = 0; i < data.length; i++) {
+              if (name == data[i].player_name.toUpperCase() && data[i].draft_round == "1") {
+                console.log(data[i].team_abbreviation);
+                var team=data[i].team_abbreviation;
+                
+                var statesvg2 = d3.select("mapVisu").append("svg")
+                .attr("width", 960)
+                .attr("height", 600)
+                .attr("id","statesvg2")
+                
+                d3.csv("DATA/teamState.csv", function(data2) {
+                  for (var j = 0; j < data2.length; j++) {
+                    
+                    if (data2[j].TeamAbr==team) {
+                      state=data2[j].StateAbr;
+                      var sampleData ={}; /* Sample random data. */ 
+                      ["HI", "AK", "FL", "SC", "GA", "AL", "NC", "TN", "RI", "CT", "MA",
+                      "ME", "NH", "VT", "NY", "NJ", "PA", "DE", "MD", "WV", "KY", "OH", 
+                      "MI", "WY", "MT", "ID", "WA", "DC", "TX", "CA", "AZ", "NV", "UT", 
+                      "CO", "NM", "OR", "ND", "SD", "NE", "IA", "MS", "IN", "IL", "MN", 
+                      "WI", "MO", "AR", "OK", "KS", "LS", "VA"]
+                      .forEach(function(d){ 
+                        if(d==state) {sampleData[d]={ color:"rgba(0, 0, 0, 1)"}; }
+                        else{
+                         sampleData[d]={ color:"rgba(114, 123, 228, 1)"}; 
+
+                       }
+
+                     });
+
+                      uStates.draw("#statesvg2", sampleData, tooltipHtml);
+                  
+                      break;
+                    };
+
+                  };
+                });
+break;
+};
+
+};
+});
+return false;
+};
+</script>
+<script>
+
+
+
+
+
+</script>
 </div>
 </div>
 </div>
