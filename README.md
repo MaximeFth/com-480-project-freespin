@@ -131,7 +131,7 @@ Functional project prototype review.
 
 **The PDF can be found here :** [here](/Milestone%202.pdf)
 
-**The website can be found here :** [here](/src/index.html)
+**The website can be found here :** [here](index.html)
 
 ## Milestone 3 (Thursday 28th May, 5pm)
 
