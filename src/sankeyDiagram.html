@@ -119,38 +119,140 @@ d3.json("nodes.json", function(error, graph) {
 <div id="features">
   <div id="choice">
     <font size="5">
+      <form name="playerName" onSubmit="return readTeamsAndYear()">
+
       <label for="team-select">Which Team?</label>
 
       <select name="Teams" id="teamSelect">
-        <option value="">--Please choose a Team--</option>
-        <option value="Los Angeles Lakers">Los Angeles Lakers</option>
-        <option value="Chicago Bulls">Chicago Bulls</option>
-        <option value="Golden State Warriors">Golden State Warriors</option>
-        <option value="Toronto Raptors">Toronto Raptors</option>
-        <option value="Houston Rockets">Houston Rockets</option>
-        <option value="San Antonio Spurs">San Antonio Spurs</option>
+        <option value="PHX">Phoenix Suns</option>
+        <option value="GSW">Golden State Warriors</option>
+        <option value="LAC">Los Angeles Clippers</option>
+        <option value="LAL">Los Angeles Lakers</option>
+        <option value="SAC">Sacramento Kings</option>
+        <option value="DEN">Denver Nuggets</option>
+        <option value="MIA">Miami Heat</option>
+        <option value="ORL">Orlando Magic</option>
+        <option value="ATL">Atlanta Hawks</option>
+        <option value="CHI">Chicago Bulls</option>
+        <option value="IND">Indiana Pacers</option>
+        <option value="NOP">New Orleans Pelicans</option>
+        <option value="BOS">Boston Celtics</option>
+        <option value="DET">Detroit Pistons</option>
+        <option value="MIN">Minnesota Timberwolves</option>
+        <option value="BKN">Brooklyn Nets</option>
+        <option value="NYK">New York Knicks</option>
+        <option value="CHA">Charlotte Hornets</option>
+        <option value="CLE">Cleveland Cavaliers</option>
+        <option value="OKC">Oklahoma City Thunder</option>
+        <option value="POR">Portland Trail Blazers</option>
+        <option value="PHI">Philadelphia 76ers</option>
+        <option value="MEM">Memphis Grizzlies</option>
+        <option value="DAL">Dallas Mavericks</option>
+        <option value="HOU">Houston Rockets</option>
+        <option value="SAS">San Antonio Spurs</option>
+        <option value="UTA">Utah Jazz</option>
+        <option value="MIL">Milwaukee Bucks</option>
+        <option value="WAS">Washington Wizards</option>
       </select>
 <br>
       <label for="season">Which Season?</label>
 
       <select name="Season" id="seasonSelect">
         <option value="">--Please choose a Season--</option>
-        <option value="1985-1986">1985-1986</option>
-        <option value="1986-1987">1986-1987</option>
-
+        <option value="1980">1980</option>
+        <option value="1981">1981</option>
+        <option value="1982">1982</option>
+        <option value="1983">1983</option>
+        <option value="1984">1984</option>
+        <option value="1985">1985</option>
+        <option value="1986">1986</option>
+        <option value="1987">1987</option>
+        <option value="1988">1988</option>
+        <option value="1989">1989</option>
+        <option value="1990">1990</option>        
+        <option value="1991">1991</option>
+        <option value="1992">1992</option>
+        <option value="1993">1993</option>
+        <option value="1994">1994</option>
+        <option value="1995">1995</option>
+        <option value="1996">1996</option>
+        <option value="1997">1997</option>
+        <option value="1998">1998</option>
+        <option value="1999">1999</option>
+        <option value="2000">2000</option>>
+        <option value="2001">2001</option>
+        <option value="2002">2002</option>
+        <option value="2003">2003</option>
+        <option value="2004">2004</option>>
+        <option value="2005">2005</option>
+        <option value="2006">2006</option>
+        <option value="2007">2007</option>
+          <input name="Submit"  type="submit" value="submit" >
+      </form>
       </select>
+
+
       <br>
             <br>
 
-      Once fully implemented, we should be able to select differents players season's performances and compare them using this diagram. When a team and a season are chosen, a list of the corresponding players set will appear, ready to be selected.
+    
     </font>
 
 
 
   </div>
+
 </div>
+<p id = "playersBox">
+
+  </p>
 </div>
 
+<script>
+function listToBoxes(mylist){
+
+  document.getElementById('playersBox').innerHTML  += "<form name=\"players_selected\", onSubmit = \"return toSelection()\">"
+
+  for (var i = 0; i < mylist.length; i++) {
+  document.getElementById('playersBox').innerHTML += "\n";
+  document.getElementById('playersBox').innerHTML += "<input type=\"checkbox\", id=\"players"+i+"\",  value="+mylist[i]+"> ";
+  document.getElementById('playersBox').innerHTML += "\n";
+  document.getElementById('playersBox').innerHTML += "<font size =5><label for=\"players"+i+"\">"+ mylist[i]+"</label></font><br>";
+
+};
+  document.getElementById('playersBox').innerHTML += "<input type=\"submit\" value=\"Submit\">";
+
+  document.getElementById('playersBox').innerHTML += "</form>";
+
+
+
+
+  return 1;
+
+};
+        function readTeamsAndYear(event){
+          var year = document.getElementById("seasonSelect").value.toUpperCase();
+
+          var tm = document.getElementById("teamSelect").value.toUpperCase();
+
+          console.log("DATA/players_teams_seasons/"+tm+year+".csv");
+          var players = [
+          ];
+
+          d3.csv("DATA/players_teams_seasons/"+tm+year+".csv",  function(data) {
+            for (var i = 0; i < data.length; i++) {
+              players.push(data[i].Player)
+};
+  document.getElementById('playersBox').innerHTML = "";
+
+              (listToBoxes(players));
+
+
+
+});
+return false;
+};
+</script>
 </body>
 
 </html>
