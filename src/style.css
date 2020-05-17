@@ -105,13 +105,21 @@ li a:hover {
 	width: 500px;
 	height: 600px;
 	margin-left: 60px;
-	margin-top: -400px;
+	margin-top: -440px;
 	float: left;
 	border: 2px solid black;
 	padding: 5px;
 
 	
 }
+#players_selected {
+
+	float: left;
+	padding: 5px;
+
+	
+}
+
 
 #content {
     width: 100%;
