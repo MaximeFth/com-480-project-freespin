@@ -161,6 +161,7 @@ li a:hover {
 	height: 150px;
 	width: 30%;
 	margin-top: 150px;
+	margin-left: 60px;
 	float: left;
 }
 #featuresMap {
@@ -196,16 +197,7 @@ li a:hover {
 #teamSelect{
 	margin-bottom: 10px;
 }
-#choice {
-	margin-left: 50px;
-	padding: 15px;
-	width: 400px;
-	height: 50px;
 
-
-
-
-}
 
 
 

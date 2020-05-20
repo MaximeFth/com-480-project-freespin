@@ -11,14 +11,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Load d3.js -->
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <!-- load scripts for nice select; source : https://hernansartorio.com/jquery-nice-select/ -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.css" rel="stylesheet" />
+    <!-- load sanskey diagram -->
     <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/sankey.js"></script>
+
+
     <link href="style.css" rel="stylesheet">
   </head>
 
   <body>
+    <!-- yellow handband -->
     <div id="headBand"></div>
 
     <div id ="title">
@@ -31,13 +36,11 @@
      </ul>
    </div>
    <div id="content">
-    <div id ="sankeyVisu">
-
-
-
-    </div>
+      <!-- div for the sanskey diagram -->
+      <div id ="sankeyVisu">
+      </div>
+    <!-- div for the selection of teams and seasons -->
     <div id="features">
-      <div id="choice">
         <font size="5">
           <form name="playerName" onSubmit="return readTeamsAndYear()">
 
@@ -132,7 +135,6 @@
 
 
 
-      </div>
 
     </div>
     <div id = "playersBox">
@@ -143,21 +145,12 @@
       </form>
     </div>
   </div>
-
   <script>
+  //make the nice selections boxes instead of ordinary ones. select by id
   $('#seasonSelect').niceSelect();
   $('#teamSelect').niceSelect();
 
-  function download(content, fileName, contentType) {
-    var a = document.createElement("a");
-    var file = new Blob([content], {type: contentType});
-    a.href = URL.createObjectURL(file);
-    a.download = fileName;
-    a.click();
-  }
   function listToBoxes(mylist){
-
-
     for (var i = 0; i < mylist.length; i++) {
       document.getElementById('players_selected').innerHTML += "\n";
       document.getElementById('players_selected').innerHTML += "<input type=\"checkbox\"name = selectedPlayers  id=\"players"+i+"\"  value="+mylist[i]+"> ";
@@ -166,8 +159,6 @@
 
     };
     document.getElementById('players_selected').innerHTML += "<button id=\"select\">Submit</button>";
-
-
     document.getElementById('select').onclick = function() {
       var checkboxes = document.getElementsByName('selectedPlayers');
       for (var checkbox of checkboxes) {
@@ -175,29 +166,18 @@
           console.log(checkbox.value + ' ');
       }
     };
-
-
-
-
     return 1;
-
   };
-
+    // function to get the team after selection and put in in playerBox
   function readTeamsAndYear(event){
     var year = document.getElementById("seasonSelect").value.toUpperCase();
-
     var tm = document.getElementById("teamSelect").value.toUpperCase();
-
-    console.log("DATA/players_teams_seasons/"+tm+year+".csv");
-    var players = [
-    ];
-
+    var players = [];
     d3.csv("DATA/players_teams_seasons/"+tm+year+".csv",  function(data) {
       for (var i = 0; i < data.length; i++) {
         players.push(data[i].Player)
       };
       document.getElementById('players_selected').innerHTML = "";
-
       (listToBoxes(players));
 
 
@@ -206,10 +186,8 @@
     return false;
   }; 
 
-
+// todo 
   var updateDiagram = function(url, location){
-
-
     var scriptTag = document.createElement('script');
     scriptTag.src = url;
 
