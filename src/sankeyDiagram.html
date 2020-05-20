@@ -5,15 +5,15 @@
     <meta charset="utf-8">
     <title></title>
     <script src="path/to/jquery.js"></script> 
-<script src="path/to/jquery.nice-select.js"></script>
+    <script src="path/to/jquery.nice-select.js"></script>
     <meta name="author" content="Jeanmonod Xavier, Fellrath Maxime, Yura Tak">
     <meta name="description" content="NBA visualisation">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Load d3.js -->
     <script src="https://d3js.org/d3.v4.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/sankey.js"></script>
     <link href="style.css" rel="stylesheet">
   </head>
@@ -44,6 +44,8 @@
             <label for="team-select"></label>
 
             <select name="Teams" id="teamSelect">
+              <option value="">--Select a Team--</option>
+
               <option value="PHX">Phoenix Suns</option>
               <option value="GSW">Golden State Warriors</option>
               <option value="LAC">Los Angeles Clippers</option>
@@ -78,7 +80,7 @@
             <label for="season"></label>
 
             <select name="Season" id="seasonSelect">
-              <option value="">--Please choose a Season--</option>
+              <option value="">--Select a season--</option>
               <option value="1980">1980</option>
               <option value="1981">1981</option>
               <option value="1982">1982</option>
@@ -117,7 +119,7 @@
               <option value="2015">2015</option>
               <option value="2016">2016</option>
               <option value="2017">2017</option>
-              <input name="Submit"  type="submit" value="submit" >
+              <input name="Submit" class = "submit" type="submit" value="Submit" >
             </form>
           </select>
 
@@ -144,7 +146,7 @@
 
   <script>
   $('#seasonSelect').niceSelect();
-    $('#teamSelect').niceSelect();
+  $('#teamSelect').niceSelect();
 
   function download(content, fileName, contentType) {
     var a = document.createElement("a");
@@ -177,52 +179,52 @@
 
 
 
-      return 1;
+    return 1;
 
-    };
+  };
 
-    function readTeamsAndYear(event){
-      var year = document.getElementById("seasonSelect").value.toUpperCase();
+  function readTeamsAndYear(event){
+    var year = document.getElementById("seasonSelect").value.toUpperCase();
 
-      var tm = document.getElementById("teamSelect").value.toUpperCase();
+    var tm = document.getElementById("teamSelect").value.toUpperCase();
 
-      console.log("DATA/players_teams_seasons/"+tm+year+".csv");
-      var players = [
-      ];
+    console.log("DATA/players_teams_seasons/"+tm+year+".csv");
+    var players = [
+    ];
 
-      d3.csv("DATA/players_teams_seasons/"+tm+year+".csv",  function(data) {
-        for (var i = 0; i < data.length; i++) {
-          players.push(data[i].Player)
-        };
-        document.getElementById('players_selected').innerHTML = "";
+    d3.csv("DATA/players_teams_seasons/"+tm+year+".csv",  function(data) {
+      for (var i = 0; i < data.length; i++) {
+        players.push(data[i].Player)
+      };
+      document.getElementById('players_selected').innerHTML = "";
 
-        (listToBoxes(players));
-
-
-
-      });
-      return false;
-    }; 
+      (listToBoxes(players));
 
 
-var updateDiagram = function(url, location){
+
+    });
+    return false;
+  }; 
+
+
+  var updateDiagram = function(url, location){
 
 
     var scriptTag = document.createElement('script');
     scriptTag.src = url;
 
     location.appendChild(scriptTag);
-};
+  };
 
-updateDiagram('sanskeyDiagram.js', document.body);
-        
-
+  updateDiagram('sanskeyDiagram.js', document.body);
 
 
 
 
-    </script>
 
-  </body>
 
-  </html>
+  </script>
+
+</body>
+
+</html>
