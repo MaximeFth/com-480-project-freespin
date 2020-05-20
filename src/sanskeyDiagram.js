@@ -1,7 +1,9 @@
 
 
-width = 600;
-height = 800;
+var width = 600;
+var height = 800;
+
+
 var svg = d3.select("#sankeyVisu").append("svg")
 .attr("width", width )
 .attr("height", height)

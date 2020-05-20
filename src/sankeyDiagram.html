@@ -4,12 +4,16 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <script src="path/to/jquery.js"></script> 
+<script src="path/to/jquery.nice-select.js"></script>
     <meta name="author" content="Jeanmonod Xavier, Fellrath Maxime, Yura Tak">
     <meta name="description" content="NBA visualisation">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Load d3.js -->
     <script src="https://d3js.org/d3.v4.min.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/sankey.js"></script>
     <link href="style.css" rel="stylesheet">
   </head>
@@ -37,7 +41,7 @@
         <font size="5">
           <form name="playerName" onSubmit="return readTeamsAndYear()">
 
-            <label for="team-select">Which Team?</label>
+            <label for="team-select"></label>
 
             <select name="Teams" id="teamSelect">
               <option value="PHX">Phoenix Suns</option>
@@ -71,7 +75,7 @@
               <option value="WAS">Washington Wizards</option>
             </select>
             <br>
-            <label for="season">Which Season?</label>
+            <label for="season"></label>
 
             <select name="Season" id="seasonSelect">
               <option value="">--Please choose a Season--</option>
@@ -139,6 +143,9 @@
   </div>
 
   <script>
+  $('#seasonSelect').niceSelect();
+    $('#teamSelect').niceSelect();
+
   function download(content, fileName, contentType) {
     var a = document.createElement("a");
     var file = new Blob([content], {type: contentType});
@@ -167,52 +174,6 @@
       }
     };
 
-    var nodesa = {nodes:[
-      {node:0,name:"Player 1"},
-      {node:1,name:"Player 2"},
-      {node:2,name:"Player 3"},
-      {node:3,name:"Player 4"},
-      {node:4,name:"Player 5"},
-      {node:5,name:"Points"},
-      {node:6,name:"Assists"},
-      {node:7,name:"Rebounds"},
-      {node:8,name:"Blocks"},
-      {node:9,name:"Steals"}
-      ],
-      links:[
-      {source:0,target:5,value:1},
-      {source:0,target:6,value:2},
-      {source:0,target:7,value:2},
-      {source:0,target:8,value:2},
-      {source:0,target:9,value:2},
-
-      {source:1,target:5,value:1},
-      {source:1,target:6,value:2},
-      {source:1,target:7,value:2},
-      {source:1,target:8,value:2},
-      {source:1,target:9,value:2},
-
-      {source:2,target:5,value:5},
-      {source:2,target:6,value:1},
-      {source:2,target:7,value:4},
-      {source:2,target:8,value:2},
-      {source:2,target:9,value:1},
-
-      {source:3,target:5,value:1},
-      {source:3,target:6,value:3},
-      {source:3,target:7,value:2},
-      {source:3,target:8,value:2},
-      {source:3,target:9,value:3},
-
-      {source:4,target:5,value:1},
-      {source:4,target:6,value:3},
-      {source:4,target:7,value:3},
-      {source:4,target:8,value:2},
-      {source:4,target:9,value:1}
-
-
-      ]};
-  var json = JSON.stringify(nodesa);
 
 
 
@@ -244,23 +205,16 @@
     }; 
 
 
-var updateDiagram = function(url, implementationCode, location){
-    //url is URL of external file, implementationCode is the code
-    //to be called from the file, location is the location to 
-    //insert the <script> element
+var updateDiagram = function(url, location){
+
 
     var scriptTag = document.createElement('script');
     scriptTag.src = url;
 
-    scriptTag.onload = implementationCode;
-    scriptTag.onreadystatechange = implementationCode;
-
     location.appendChild(scriptTag);
 };
-var yourCodeToBeCalled = function(){
-console.log("pii");
-}
-updateDiagram('sanskeyDiagram.js', yourCodeToBeCalled, document.body);
+
+updateDiagram('sanskeyDiagram.js', document.body);
         
 
 
