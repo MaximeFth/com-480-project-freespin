@@ -1,208 +1,258 @@
-  <!DOCTYPE html>
-  <html>
-  <!-- Source for the sankey diagram inspiration code : https://www.d3-graph-gallery.com/graph/sankey_basic.html -->
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <script src="path/to/jquery.js"></script> 
-    <script src="path/to/jquery.nice-select.js"></script>
-    <meta name="author" content="Jeanmonod Xavier, Fellrath Maxime, Yura Tak">
-    <meta name="description" content="NBA visualisation">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Load d3.js -->
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-    <!-- load scripts for nice select; source : https://hernansartorio.com/jquery-nice-select/ -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.css" rel="stylesheet" />
-    <!-- load sanskey diagram -->
-    <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/sankey.js"></script>
-
-
-    <link href="style.css" rel="stylesheet">
-  </head>
-
-  <body>
-    <!-- yellow handband -->
-    <div id="headBand"></div>
-
-    <div id ="title">
-      <ul>
-        <font size = "4">
-         <li><a class="menuButtons" href="index.html">Home</a></li>
-         <li><a class="menuButtons" href="sankeyDiagram.html">Sankey Diagrams</a></li>
-         <li><a class="menuButtons" href="map.html">USA Map</a></li>
-       </font>
-     </ul>
-   </div>
-   <div id="content">
-      <!-- div for the sanskey diagram -->
-      <div id ="sankeyVisu">
-      </div>
-    <!-- div for the selection of teams and seasons -->
-    <div id="features">
-        <font size="5">
-          <form name="playerName" onSubmit="return readTeamsAndYear()">
-
-            <label for="team-select"></label>
-
-            <select name="Teams" id="teamSelect">
-              <option value="">--Select a Team--</option>
-
-              <option value="PHX">Phoenix Suns</option>
-              <option value="GSW">Golden State Warriors</option>
-              <option value="LAC">Los Angeles Clippers</option>
-              <option value="LAL">Los Angeles Lakers</option>
-              <option value="SAC">Sacramento Kings</option>
-              <option value="DEN">Denver Nuggets</option>
-              <option value="MIA">Miami Heat</option>
-              <option value="ORL">Orlando Magic</option>
-              <option value="ATL">Atlanta Hawks</option>
-              <option value="CHI">Chicago Bulls</option>
-              <option value="IND">Indiana Pacers</option>
-              <option value="NOP">New Orleans Pelicans</option>
-              <option value="BOS">Boston Celtics</option>
-              <option value="DET">Detroit Pistons</option>
-              <option value="MIN">Minnesota Timberwolves</option>
-              <option value="BKN">Brooklyn Nets</option>
-              <option value="NYK">New York Knicks</option>
-              <option value="CHA">Charlotte Hornets</option>
-              <option value="CLE">Cleveland Cavaliers</option>
-              <option value="OKC">Oklahoma City Thunder</option>
-              <option value="POR">Portland Trail Blazers</option>
-              <option value="PHI">Philadelphia 76ers</option>
-              <option value="MEM">Memphis Grizzlies</option>
-              <option value="DAL">Dallas Mavericks</option>
-              <option value="HOU">Houston Rockets</option>
-              <option value="SAS">San Antonio Spurs</option>
-              <option value="UTA">Utah Jazz</option>
-              <option value="MIL">Milwaukee Bucks</option>
-              <option value="WAS">Washington Wizards</option>
-            </select>
-            <br>
-            <label for="season"></label>
-
-            <select name="Season" id="seasonSelect">
-              <option value="">--Select a season--</option>
-              <option value="1980">1980</option>
-              <option value="1981">1981</option>
-              <option value="1982">1982</option>
-              <option value="1983">1983</option>
-              <option value="1984">1984</option>
-              <option value="1985">1985</option>
-              <option value="1986">1986</option>
-              <option value="1987">1987</option>
-              <option value="1988">1988</option>
-              <option value="1989">1989</option>
-              <option value="1990">1990</option>        
-              <option value="1991">1991</option>
-              <option value="1992">1992</option>
-              <option value="1993">1993</option>
-              <option value="1994">1994</option>
-              <option value="1995">1995</option>
-              <option value="1996">1996</option>
-              <option value="1997">1997</option>
-              <option value="1998">1998</option>
-              <option value="1999">1999</option>
-              <option value="2000">2000</option>
-              <option value="2001">2001</option>
-              <option value="2002">2002</option>
-              <option value="2003">2003</option>
-              <option value="2004">2004</option>
-              <option value="2005">2005</option>
-              <option value="2006">2006</option>
-              <option value="2007">2007</option>
-              <option value="2008">2008</option>
-              <option value="2009">2009</option>
-              <option value="2010">2010</option>
-              <option value="2011">2011</option>
-              <option value="2012">2012</option>
-              <option value="2013">2013</option>
-              <option value="2014">2014</option>
-              <option value="2015">2015</option>
-              <option value="2016">2016</option>
-              <option value="2017">2017</option>
-              <input name="Submit" class = "submit" type="submit" value="Submit" >
-            </form>
-          </select>
-
-
-          <br>
-          <br>
-
-
-        </font>
+<!DOCTYPE html>
+<html>
+<!-- Source for the sankey diagram inspiration code : https://www.d3-graph-gallery.com/graph/sankey_basic.html -->
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="author" content="Jeanmonod Xavier, Fellrath Maxime, Yura Tak">
+  <meta name="description" content="NBA visualisation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Load d3.js -->
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <!-- load scripts for nice select; source : https://hernansartorio.com/jquery-nice-select/ -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.css" rel="stylesheet" />
+  <!-- load sanskey diagram -->
+  <script type="text/javascript" SameSite=None src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src = "sanskey.js"></script>
 
 
 
+  <link href="style.css" rel="stylesheet">
+</head>
 
-    </div>
+<body>
+  <!-- yellow handband -->
+  <div id="headBand"></div>
+
+  <div id ="title">
+    <ul>
+      <font size = "4">
+       <li><a class="menuButtons" href="index.html">Home</a></li>
+       <li><a class="menuButtons" href="sankeyDiagram.html">Sankey Diagrams</a></li>
+       <li><a class="menuButtons" href="map.html">USA Map</a></li>
+     </font>
+   </ul>
+ </div>
+ <div id="content">
+  <!-- div for the sanskey diagram -->
+  <div id ="sankeyVisu">
+  </div>
+  <!-- div for the selection of teams and seasons -->
+  <div id="features">
+    <font size="5">
+      <form name="playerName" onSubmit="return readTeamsAndYear()">
+
+        <label for="team-select"></label>
+
+        <select name="Teams" id="teamSelect">
+          <option value="">--Select a Team--</option>
+
+          <option value="PHX">Phoenix Suns</option>
+          <option value="GSW">Golden State Warriors</option>
+          <option value="LAC">Los Angeles Clippers</option>
+          <option value="LAL">Los Angeles Lakers</option>
+          <option value="SAC">Sacramento Kings</option>
+          <option value="DEN">Denver Nuggets</option>
+          <option value="MIA">Miami Heat</option>
+          <option value="ORL">Orlando Magic</option>
+          <option value="ATL">Atlanta Hawks</option>
+          <option value="CHI">Chicago Bulls</option>
+          <option value="IND">Indiana Pacers</option>
+          <option value="NOP">New Orleans Pelicans</option>
+          <option value="BOS">Boston Celtics</option>
+          <option value="DET">Detroit Pistons</option>
+          <option value="MIN">Minnesota Timberwolves</option>
+          <option value="BKN">Brooklyn Nets</option>
+          <option value="NYK">New York Knicks</option>
+          <option value="CHA">Charlotte Hornets</option>
+          <option value="CLE">Cleveland Cavaliers</option>
+          <option value="OKC">Oklahoma City Thunder</option>
+          <option value="POR">Portland Trail Blazers</option>
+          <option value="PHI">Philadelphia 76ers</option>
+          <option value="MEM">Memphis Grizzlies</option>
+          <option value="DAL">Dallas Mavericks</option>
+          <option value="HOU">Houston Rockets</option>
+          <option value="SAS">San Antonio Spurs</option>
+          <option value="UTA">Utah Jazz</option>
+          <option value="MIL">Milwaukee Bucks</option>
+          <option value="WAS">Washington Wizards</option>
+        </select>
+        <br>
+        <label for="season"></label>
+
+        <select name="Season" id="seasonSelect">
+          <option value="">--Select a season--</option>
+          <option value="1980">1980</option>
+          <option value="1981">1981</option>
+          <option value="1982">1982</option>
+          <option value="1983">1983</option>
+          <option value="1984">1984</option>
+          <option value="1985">1985</option>
+          <option value="1986">1986</option>
+          <option value="1987">1987</option>
+          <option value="1988">1988</option>
+          <option value="1989">1989</option>
+          <option value="1990">1990</option>        
+          <option value="1991">1991</option>
+          <option value="1992">1992</option>
+          <option value="1993">1993</option>
+          <option value="1994">1994</option>
+          <option value="1995">1995</option>
+          <option value="1996">1996</option>
+          <option value="1997">1997</option>
+          <option value="1998">1998</option>
+          <option value="1999">1999</option>
+          <option value="2000">2000</option>
+          <option value="2001">2001</option>
+          <option value="2002">2002</option>
+          <option value="2003">2003</option>
+          <option value="2004">2004</option>
+          <option value="2005">2005</option>
+          <option value="2006">2006</option>
+          <option value="2007">2007</option>
+          <option value="2008">2008</option>
+          <option value="2009">2009</option>
+          <option value="2010">2010</option>
+          <option value="2011">2011</option>
+          <option value="2012">2012</option>
+          <option value="2013">2013</option>
+          <option value="2014">2014</option>
+          <option value="2015">2015</option>
+          <option value="2016">2016</option>
+          <option value="2017">2017</option>
+          <input name="Submit" class = "submit" type="submit" value="Submit" >
+        </form>
+      </select>
+
+
+      <br>
+      <br>
+
+
+    </font>
+
+
+
+
+
     <div id = "playersBox">
-      <form id="players_selected">
-
+      <form id="players_selected", name= "playerSelection", onSubmit = "return readPlayers()">
 
 
       </form>
     </div>
   </div>
-  <script>
+</div>
+
+
+
+
+
+<script>
+
+
+
+        // function to get the team after selection and put in in playerBox
+        function readTeamsAndYear(event){
+          var year = document.getElementById("seasonSelect").value.toUpperCase();
+          var tm = document.getElementById("teamSelect").value.toUpperCase();
+          var players = [];
+          console.log("DATA/players_teams_seasons/"+tm+year+".csv");
+          d3.csv("DATA/players_teams_seasons/"+tm+year+".csv").then (function(data) {
+
+            for (var i = 0; i < data.length; i++) {
+              players.push(data[i].Player);
+            };
+            document.getElementById('players_selected').innerHTML = "";
+            (listToBoxes(players));
+            return false;
+          });
+          return false;
+        }; 
+
   //make the nice selections boxes instead of ordinary ones. select by id
   $('#seasonSelect').niceSelect();
   $('#teamSelect').niceSelect();
 
+
   function listToBoxes(mylist){
     for (var i = 0; i < mylist.length; i++) {
       document.getElementById('players_selected').innerHTML += "\n";
-      document.getElementById('players_selected').innerHTML += "<input type=\"checkbox\"name = selectedPlayers  id=\"players"+i+"\"  value="+mylist[i]+"> ";
+
+      document.getElementById('players_selected').innerHTML += "<input type=\"checkbox\"name = selectedPlayers  id=\"players"+i+"\"  value="+(mylist[i]+'').replace(/ /g,"_")+"> ";
       document.getElementById('players_selected').innerHTML += "\n";
-      document.getElementById('players_selected').innerHTML += "<font size =5><label for=\"players"+i+"\">"+ mylist[i]+"</label></font><br>";
+      document.getElementById('players_selected').innerHTML += "<font size =5><label for=\"players"+i+"\">"+mylist[i]+"</label></font><br>";
 
     };
-    document.getElementById('players_selected').innerHTML += "<button id=\"select\">Submit</button>";
-    document.getElementById('select').onclick = function() {
-      var checkboxes = document.getElementsByName('selectedPlayers');
-      for (var checkbox of checkboxes) {
-        if (checkbox.checked)
-          console.log(checkbox.value + ' ');
-      }
+    document.getElementById('players_selected').innerHTML += "<button class=\"submit\" type = \"submit\">Submit</button>";
+    return 0;
+  };
+
+  function readPlayers(event){
+    var checkboxes = document.getElementsByName('selectedPlayers');
+    var indexes = []
+    var selectedPlayers = [];
+
+    for (var checkbox of checkboxes) {
+      if (checkbox.checked){
+        selectedPlayers.push((checkbox.value+'').replace("_"," "));
+
+      }};
+      var points = [0,0,0,0,0];
+      var threepoints = [0,0,0,0,0];
+      var offenseRb = [0,0,0,0,0];
+      var defenseRB = [0,0,0,0,0];
+      var ftr = [0,0,0,0,0];
+
+      var year = document.getElementById("seasonSelect").value.toUpperCase();
+      var tm = document.getElementById("teamSelect").value.toUpperCase();
+      var players = [];
+      d3.csv("DATA/players_teams_seasons/"+tm+year+".csv").then (function(data) {
+        for (var i = 0; i < data.length; i++) {
+
+          for (var j = 0; j<selectedPlayers.length; j++) {
+            if (selectedPlayers[j] == data[i].Player) {
+              points[j] = Number(data[i].PTS);
+              threepoints[j] = Number(data[i]["3P"]);
+              offenseRb[j] = Number(data[i].ORB);
+              defenseRB[j] = Number(data[i].DRB);
+              ftr[j] = Number(data[i].FTr);
+
+            };
+          };
+          
+
+        };
+        console.log(points);
+        updateDiagram(selectedPlayers, points, threepoints, offenseRb, defenseRB, ftr);
+        return false;
+      });
+      return false;
+
     };
-    return 1;
-  };
-    // function to get the team after selection and put in in playerBox
-  function readTeamsAndYear(event){
-    var year = document.getElementById("seasonSelect").value.toUpperCase();
-    var tm = document.getElementById("teamSelect").value.toUpperCase();
-    var players = [];
-    d3.csv("DATA/players_teams_seasons/"+tm+year+".csv",  function(data) {
-      for (var i = 0; i < data.length; i++) {
-        players.push(data[i].Player)
-      };
-      document.getElementById('players_selected').innerHTML = "";
-      (listToBoxes(players));
-
-
-
-    });
-    return false;
-  }; 
-
-// todo 
-  var updateDiagram = function(url, location){
-    var scriptTag = document.createElement('script');
-    scriptTag.src = url;
-
-    location.appendChild(scriptTag);
-  };
-
-  updateDiagram('sanskeyDiagram.js', document.body);
 
 
 
 
 
+    function         updateDiagram(selectedPlayers, points, threepoints, offenseRb, defenseRB, ftr){
+     playersList = selectedPlayers;
+     pointsList = points;
+     threepointsList =threepoints;
+     offenseRbList = offenseRb;
+     defenseRBList = defenseRB;
+     ftrList  = ftr;
 
-  </script>
+     drawChart();
 
-</body>
+     return false;
+   };
 
-</html>
+
+   </script>
+
+ </body>
+
+ </html>

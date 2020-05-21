@@ -72,7 +72,6 @@ body {
 	 width:100%;
 	 background:#FFFFCC;
 	 height:150px;
-	 position: fixed;
 }
 .submit {
   border: none;
@@ -116,12 +115,11 @@ li a:hover {
 }
 #playersBox {
 	width: 500px;
-	height: 600px;
-	margin-left: 60px;
+	height: 400px;
 	float: left;
-	border: 2px solid black;
+	margin-top: 10px;
 	padding: 5px;
-	margin-top: 20px;
+
 
 	
 }
@@ -140,13 +138,11 @@ li a:hover {
     background-color: #FFD288;
 }
 #sankeyVisu{
-	width: 40%;
-	height: 50%;
+	width: 600;
+	height: 800;
 	float: left;
-	padding-top: 150px;
+	padding-top: 10px;
 	margin-left: 150px;
-
-
 }
 #mapVisu{
 	width: 40%;
@@ -154,13 +150,12 @@ li a:hover {
 	float: left;
 	padding-top: 250px;
 	margin-left: 150px;
-
-
 }
+
 #features {
 	height: 150px;
 	width: 30%;
-	margin-top: 150px;
+	margin-top: 10px;
 	margin-left: 60px;
 	float: left;
 }
@@ -188,7 +183,7 @@ li a:hover {
 #title { 
     width:1000px; 
     height:50px; 
-    position: fixed; 
+    position: absolute; 
     top: 17%; 
     left: 20%; 
     margin-top: -100px; 
