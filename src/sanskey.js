@@ -17,7 +17,10 @@
     height: 800,
     sankey: {
       node: {
-        colors: colors
+        colors: colors,
+        label: {fontSize: 20,
+                color: '#1f78b4'}
+
       },
       link: {
         colorMode: 'gradient',
