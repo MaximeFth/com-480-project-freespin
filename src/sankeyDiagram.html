@@ -140,8 +140,66 @@
     <div id = "playersBox">
       <form id="players_selected", name= "playerSelection", onSubmit = "return readPlayers()">
 
-
       </form>
+    </div>
+    <div id = "selectedPlayersBuffer">
+
+
+      <input type="checkbox" name = "selectedStat"  id="G"  value=G>
+      <font size =5><label for="G">Games</label></font><br>
+      <input type="checkbox" name = "selectedStat"  id="GS"  value=GS>
+      <font size =5><label for="GS">Game started</label></font><br>
+      <input type="checkbox" name = "selectedStat"  id="PER"  value=PER>
+      <font size =5><label for="PER">Player efficiency rating</label></font><br>
+      <input type="checkbox" name = "selectedStat"  id="FTr"  value=FTr>
+      <font size =5><label for="FTr">Free throw Percentage</label></font><br>
+      <input type="checkbox" name = "selectedStat"  id="ORB%"  value=ORB%>
+      <font size =5><label for="ORB%">Offensive rebound rate</label></font><br>
+      <input type="checkbox" name = "selectedStat"  id="DRB%"  value=DRB%>
+      <font size =5><label for="DRB%">Defensive Rebound rate</label></font><br>
+      <input type="checkbox" name = "selectedStat"  id="AST%"  value=AST%>
+      <font size =5><label for="AST%">Assist Percentage</label></font><br>
+      <input type="checkbox" name = "selectedStat"  id="STL%"  value=STL%>
+      <font size =5><label for="STL%">Steal Percentage</label></font><br>
+      <input type="checkbox" name = "selectedStat"  id="BLK%"  value=BLK%>
+      <font size =5><label for="BLK%">Block Percentage</label></font><br>
+      <input type="checkbox" name = "selectedStat"  id="TOV%"  value=TOV%>
+      <font size =5><label for="TOV%">Turnover Percentage</label></font><br>
+      <input type="checkbox" name = "selectedStat"  id="USG%"  value=USG%>
+      <font size =5><label for="USG%">Usage Percentage</label></font><br>
+      <input type="checkbox" name = "selectedStat"  id="3P"  value=3P>
+      <font size =5><label for="3P">3Pts</label></font><br>
+      <input type="checkbox" name = "selectedStat"  id="3PA"  value=3PA>
+      <font size =5><label for="3PA">3Pts attempts</label></font><br>
+      <input type="checkbox" name = "selectedStat"  id="3P%"  value=3P%>
+      <font size =5><label for="3P%">3Pts Percentage</label></font><br>
+      <input type="checkbox" name = "selectedStat"  id="2P"  value=2P>
+      <font size =5><label for="2P">2Pts</label></font><br>
+      <input type="checkbox" name = "selectedStat"  id="2PA"  value=2PA>
+      <font size =5><label for="2PA">2Pts attempts</label></font><br>
+      <input type="checkbox" name = "selectedStat"  id="2P%"  value=2P%>
+      <font size =5><label for="2P%">2Pts percentage</label></font><br>
+      <input type="checkbox" name = "selectedStat"  id="FT"  value=FT>
+      <font size =5><label for="FT">Free throws</label></font><br>
+      <input type="checkbox" name = "selectedStat"  id="FTA"  value=FTA>
+      <font size =5><label for="FTA">Free throws attempts</label></font><br>
+      <input type="checkbox" name = "selectedStat"  id="FT%"  value=FT%>
+      <font size =5><label for="FT%">Free throws Percentage</label></font><br>
+      <input type="checkbox" name = "selectedStat"  id="ORB"  value=ORB>
+      <font size =5><label for="ORB">Offensive rebounds</label></font><br>
+      <input type="checkbox" name = "selectedStat"  id="DRB"  value=DRB>
+      <font size =5><label for="DRB">Defensive rebounds</label></font><br>
+      <input type="checkbox" name = "selectedStat"  id="AST"  value=AST>
+      <font size =5><label for="AST">Assists</label></font><br>
+      <input type="checkbox" name = "selectedStat"  id="STL"  value=STL>
+      <font size =5><label for="STL">Steals</label></font><br>
+      <input type="checkbox" name = "selectedStat"  id="BLK"  value=BLK>
+      <font size =5><label for="BLK">Blocks</label></font><br>
+      <input type="checkbox" name = "selectedStat"  id="TOV"  value=TOV>
+      <font size =5><label for="TOV">Turnovers</label></font><br>
+      <input type="checkbox" name = "selectedStat"  id="PTS"  value=PTS>
+      <font size =5><label for="PTS">Points</label></font><br>
+
     </div>
   </div>
 </div>
@@ -191,68 +249,69 @@
   };
 
   function readPlayers(event){
-    var checkboxes = document.getElementsByName('selectedPlayers');
-    var indexes = []
-    var selectedPlayers = [];
+    var checkboxesPlayers = document.getElementsByName('selectedPlayers');
+    var checkboxesStats = document.getElementsByName('selectedStat');
 
-    for (var checkbox of checkboxes) {
-      if (checkbox.checked){
-        selectedPlayers.push((checkbox.value+'').replace("_"," "));
+    var indexes = [];
+    var selectedPlayers = [];
+    var StatsList = [];
+    for (var checkboxS of checkboxesStats) {
+      if (checkboxS.checked){
+        StatsList.push((checkboxS.value+''));
 
       }};
-      var points = [0,0,0,0,0];
-      var threepoints = [0,0,0,0,0];
-      var offenseRb = [0,0,0,0,0];
-      var defenseRB = [0,0,0,0,0];
-      var ftr = [0,0,0,0,0];
+      console.log(StatsList);
+      for (var checkboxP of checkboxesPlayers) {
+        if (checkboxP.checked){
+          selectedPlayers.push((checkboxP.value+'').replace("_"," "));
 
-      var year = document.getElementById("seasonSelect").value.toUpperCase();
-      var tm = document.getElementById("teamSelect").value.toUpperCase();
-      var players = [];
-      d3.csv("DATA/players_teams_seasons/"+tm+year+".csv").then (function(data) {
-        for (var i = 0; i < data.length; i++) {
+        }};
+      var stats = [StatsList];
 
-          for (var j = 0; j<selectedPlayers.length; j++) {
-            if (selectedPlayers[j] == data[i].Player) {
-              points[j] = Number(data[i].PTS);
-              threepoints[j] = Number(data[i]["3P"]);
-              offenseRb[j] = Number(data[i].ORB);
-              defenseRB[j] = Number(data[i].DRB);
-              ftr[j] = Number(data[i].FTr);
+        var year = document.getElementById("seasonSelect").value.toUpperCase();
+        var tm = document.getElementById("teamSelect").value.toUpperCase();
+        var players = [];
+        d3.csv("DATA/players_teams_seasons/"+tm+year+".csv").then (function(data) {
+          for (var i = 0; i < data.length; i++) {
 
+            for (var j = 0; j<selectedPlayers.length; j++) {
+              var temp = [];
+                if (selectedPlayers[j] == data[i].Player) {
+                  for(var k of StatsList){
+                    
+                    temp.push(Number(data[i][k]));
+                };
+                stats.push(temp);
+
+              };
             };
+
+
           };
-          
-
-        };
-        console.log(points);
-        updateDiagram(selectedPlayers, points, threepoints, offenseRb, defenseRB, ftr);
+          console.log(stats);
+          updateDiagram(selectedPlayers, stats);
+          return false;
+        });
         return false;
-      });
-      return false;
 
-    };
+      };
 
 
 
 
 
-    function         updateDiagram(selectedPlayers, points, threepoints, offenseRb, defenseRB, ftr){
-     playersList = selectedPlayers;
-     pointsList = points;
-     threepointsList =threepoints;
-     offenseRbList = offenseRb;
-     defenseRBList = defenseRB;
-     ftrList  = ftr;
+      function  updateDiagram(selectedPlayers,s){
+       playersList = selectedPlayers;
+       stats = s;
 
-     drawChart();
+       drawChart();
 
-     return false;
-   };
+       return false;
+     };
 
 
-   </script>
+     </script>
 
- </body>
+   </body>
 
- </html>
+   </html>

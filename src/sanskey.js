@@ -1,9 +1,5 @@
-  var playersList = ['player1', 'player2', 'player3', 'player4', 'player5'];
-  var pointsList = [1,2,4,4,5];
-  var threepointsList =[1,2,4,4,5];
-  var offenseRbList = [1,2,4,4,5];
-  var defenseRBList = [1,2,4,4,5];
-  var ftrList  = [1,2,4,4,5];
+  var playersList = ['player1', 'player5'];
+  var stats = [["free throws", "pts"],[5,4], [3,5] ];
 
 
   google.charts.load('current', {'packages':['sankey']});
@@ -18,7 +14,7 @@
   '#cab2d6', '#ffff99', '#1f78b4', '#33a02c'];
 
   var options = {
-    height: 600,
+    height: 800,
     sankey: {
       node: {
         colors: colors
@@ -30,14 +26,14 @@
     }
   };
   for (var i =0; i<playersList.length; i++){
+    for (var k = 0; k < stats[0].length; k++) {
+      
+   
     datatable1.addRows([
-     [ playersList[i], 'points', pointsList[i]],
-     [ playersList[i], '3pts', threepointsList[i]],
-     [ playersList[i], 'ORB', offenseRbList[i]],
-     [ playersList[i], 'DRB', defenseRBList[i]],
-     [ playersList[i], 'ftr', ftrList[i]]
+     [ playersList[i], stats[0][k], stats[i+1][k]]
      ]);
   }
+   };
     // Instantiate and draw our chart, passing in some options.
 
     var chart = new google.visualization.Sankey(document.getElementById('sankeyVisu'));
