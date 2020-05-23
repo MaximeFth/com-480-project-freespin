@@ -17,4 +17,4 @@ function tooltipHtml(n, d){ /* function to create html content string in tooltip
   /* draw states on id #statesvg */ 
   uStates.draw("#statesvg", sampleData, tooltipHtml);
   
-  d3.select(self.frameElement).style("height", "600px"); 
+  d3.select(self.frameElement).style("height", "200"); 
