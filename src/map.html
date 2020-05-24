@@ -1,19 +1,78 @@
-
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+      <script src="datamaps.all.js"></script>
+    <script type="text/javascript" src="//use.typekit.net/vzv8gnr.js"></script>
 <html>
-  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+          <div class="map" id="arcs"></div>
+          <script data-info="Map source for arcs example">
+var arcs = new Datamap({
+  element: document.getElementById("arcs"),
+  scope: 'usa',
+  fills: {
+    defaultFill: "#ABDDA4",
+    win: '#0fa0fa'
+  },
+  data: {
+    'TX': { fillKey: 'win' },
+    'FL': { fillKey: 'win' },
+    'NC': { fillKey: 'win' },
+    'CA': { fillKey: 'win' },
+    'NY': { fillKey: 'win' },
+    'CO': { fillKey: 'win' }
+  }
+});
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
-<script src="datamaps.usa.min.js"></script>
+// Arcs coordinates can be specified explicitly with latitude/longtitude,
+// or just the geographic center of the state/country.
+arcs.arc([
+  {
+    origin: 'CA',
+    destination: 'TX'
+  },
+  {
+    origin: 'OR',
+    destination: 'TX'
+  },
+  {
+    origin: 'NY',
+    destination: 'TX'
+  },
+  {
+      origin: {
+          latitude: 40.639722,
+          longitude: -73.778889
+      },
+      destination: {
+          latitude: 37.618889,
+          longitude: -122.375
+      }
+  },
+  {
+      origin: {
+          latitude: 30.194444,
+          longitude: -97.67
+      },
+      destination: {
+          latitude: 25.793333,
+          longitude: -80.290556
+      },
+      options: {
+        strokeWidth: 2,
+        strokeColor: 'rgba(100, 10, 200, 0.4)',
+        greatArc: true
+      }
+  },
+  {
+      origin: {
+          latitude: 39.861667,
+          longitude: -104.673056
+      },
+      destination: {
+          latitude: 35.877778,
+          longitude: -78.7875
+      }
+  }
+],  {strokeWidth: 1, arcSharpness: 1.4});
+          </script>
 
-<div id="container" style="position: relative; width: 500px; height: 300px;"></div>
-<script>
-        var map =
-          new Datamap(
-            {
-              element: document.getElementById('container'),
-              responsive: true,
-              scope: "usa"
-            }
-          );</script>
-</html>
+          </html>

@@ -9,6 +9,7 @@
   <meta name="description" content="NBA visualisation">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Load d3.js -->
+
   <script src="https://d3js.org/d3.v3.min.js"></script>
   <!-- load scripts for nice select; source : https://hernansartorio.com/jquery-nice-select/ -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -21,7 +22,7 @@
   <script src="map.js"></script>
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
-  <script src="datamaps.usa.min.js"></script>
+      <script src="datamaps.all.js"></script>
   <link href="style.css" rel="stylesheet">
 </head>
 
@@ -251,16 +252,10 @@
 
 <script>
 function updateMap(){
-  bubbles = [];
-           setTimeout(() => { // only start drawing bubbles on the map when map has rendered completely.
-          map.bubbles(bubbles, {
-            popupTemplate: function (geo, data) {
-              return '<div class="hoverinfo">city: ${data.state}, Slums: ${data.radius}%</div>';
-            }
-          });
-        }, 1000);
+bubbles = [];
   var playerMap = document.getElementById("selectPlayerMap").value;
   var stateAb;
+  var stateVisited = [];
   d3.csv("DATA/draftStates/"+(playerMap+'').slice(0,-3)+".csv").then (function(data) {
        d3.csv("DATA/teamState.csv").then (function(team) {
 
@@ -270,7 +265,7 @@ function updateMap(){
           stateAb = team[j].StateAbr;
           break;
         }};
-
+        stateVisited.push(stateAb+'');
       bubbles.push(
       {
         centered: stateAb+'',
@@ -280,7 +275,19 @@ function updateMap(){
 
       }
       );
+      
       };
+      arcs = []
+      for (var i = 0; i < stateVisited.length-1; i++) {
+        arcs.push(
+  {
+    origin: stateVisited[i],
+    destination: stateVisited[i+1]
+  })
+      };
+  map.arc(arcs, {strokeWidth: 3, arcSharpness: 1.1}, 
+                {animationSpeed: 0.000001});
+    
          setTimeout(() => { // only start drawing bubbles on the map when map has rendered completely.
           map.bubbles(bubbles, {
             popupTemplate: function (geo, data) {
@@ -288,6 +295,7 @@ function updateMap(){
             }
           });
         }, 1000);
+
     
 
     return false;
@@ -298,9 +306,11 @@ function updateMap(){
 return false;
 
 }
+
 var map =
 new Datamap(
 {
+
   element: document.getElementById('mapDiv'),
   responsive: true,
   scope: "usa",
@@ -314,13 +324,13 @@ new Datamap(
     'MAJOR': '#306596',
     'MEDIUM': '#0fa0fa',
     'MINOR': '#bada55',
+    win: '#0fa0fa',
     defaultFill: 'rgba(140,86,85,0.7)'
   },
-  data: {
+    data: {
+
   }
-});
-
-
+})
 
 
 
