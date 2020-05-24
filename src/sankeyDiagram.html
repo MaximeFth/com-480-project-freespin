@@ -3,7 +3,8 @@
 <!-- Source for the sankey diagram inspiration code : https://www.d3-graph-gallery.com/graph/sankey_basic.html -->
 <head>
   <meta charset="utf-8">
-  <title></title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
   <meta name="author" content="Jeanmonod Xavier, Fellrath Maxime, Yura Tak">
   <meta name="description" content="NBA visualisation">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,8 +33,7 @@
     <ul>
       <font size = "4">
        <li><a class="menuButtons" href="index.html">Home</a></li>
-       <li><a class="menuButtons" href="sankeyDiagram.html">Sankey Diagrams</a></li>
-       <li><a class="menuButtons" href="map.html">USA Map</a></li>
+       <li><a class="menuButtons" href="sankeyDiagram.html">NBA</a></li>
      </font>
    </ul>
  </div>
@@ -51,7 +51,6 @@
         <select name="Teams" id="teamSelect">
           <option value="">--Select a Team--</option>
 
-          <option value="PHX">Phoenix Suns</option>
           <option value="GSW">Golden State Warriors</option>
           <option value="LAC">Los Angeles Clippers</option>
           <option value="LAL">Los Angeles Lakers</option>
@@ -62,11 +61,9 @@
           <option value="ATL">Atlanta Hawks</option>
           <option value="CHI">Chicago Bulls</option>
           <option value="IND">Indiana Pacers</option>
-          <option value="NOP">New Orleans Pelicans</option>
           <option value="BOS">Boston Celtics</option>
           <option value="DET">Detroit Pistons</option>
           <option value="MIN">Minnesota Timberwolves</option>
-          <option value="BKN">Brooklyn Nets</option>
           <option value="NYK">New York Knicks</option>
           <option value="CHA">Charlotte Hornets</option>
           <option value="CLE">Cleveland Cavaliers</option>
@@ -146,10 +143,10 @@
       <form id="players_selected", name= "playerSelection", onSubmit = "return readPlayers()">
 
       </form>
-                                  <form name="test" onSubmit="return clearBuffer()">
-                        <input name="Submit" class = "Clear" type="submit" value="Clear!" >
+      <form name="test" onSubmit="return clearBuffer()">
+        <input name="Submit" class = "Clear" type="submit" value="Clear!" >
 
-                      </form>
+      </form>
     </div>
     <div id = "StatDiv">
       <h1> Statistics</h1>
@@ -197,8 +194,7 @@
           <font size =4><label for="FTA">Free throws attempts</label></font><br>
           <input type="checkbox" name = "selectedStat"  id="FT%"  value=FT%>
           <font size =4><label for="FT%">Free throws Percentage</label></font><br>
-          <input type="checkbox" name = "selectedStat"  id="BLK%"  value=BLK%>
-          <font size =4><label for="BLK%">Block Percentage</label></font><br>
+
         </td>
         <td>
 
@@ -219,6 +215,8 @@
           <font size =4><label for="TOV">Turnovers</label></font><br>
           <input type="checkbox" name = "selectedStat"  id="PTS"  value=PTS>
           <font size =4><label for="PTS">Points</label></font><br>
+          <input type="checkbox" name = "selectedStat"  id="BLK%"  value=BLK%>
+          <font size =4><label for="BLK%">Block Percentage</label></font><br>
 
         </td>
       </tr>
@@ -234,7 +232,7 @@
 
 
   <div id="PlayerMap">
-      <select name="selectPlayerMap" id="selectPlayerMap"></select>
+    <select onchange="updateMap()" name="selectPlayerMap" id="selectPlayerMap"></select>
 
 
 
@@ -252,15 +250,79 @@
 
 
 <script>
+function updateMap(){
+  bubbles = [];
+           setTimeout(() => { // only start drawing bubbles on the map when map has rendered completely.
+          map.bubbles(bubbles, {
+            popupTemplate: function (geo, data) {
+              return '<div class="hoverinfo">city: ${data.state}, Slums: ${data.radius}%</div>';
+            }
+          });
+        }, 1000);
+  var playerMap = document.getElementById("selectPlayerMap").value;
+  var stateAb;
+  d3.csv("DATA/draftStates/"+(playerMap+'').slice(0,-3)+".csv").then (function(data) {
+       d3.csv("DATA/teamState.csv").then (function(team) {
 
+    for (var i = 0; i < data.length; i++) {
+      for (var j = 0; j < team.length; j++) {
+        if(data[i].Tm ==team[j].TeamAbr){
+          stateAb = team[j].StateAbr;
+          break;
+        }};
+
+      bubbles.push(
+      {
+        centered: stateAb+'',
+        fillKey: "MAJOR",
+        radius: Number(data[i]["PER"])
+
+
+      }
+      );
+      };
+         setTimeout(() => { // only start drawing bubbles on the map when map has rendered completely.
+          map.bubbles(bubbles, {
+            popupTemplate: function (geo, data) {
+              return '<div class="hoverinfo">city: ${data.state}, Slums: ${data.radius}%</div>';
+            }
+          });
+        }, 1000);
+    
+
+    return false;
+  });
+
+    return false;
+  });
+return false;
+
+}
 var map =
 new Datamap(
 {
   element: document.getElementById('mapDiv'),
   responsive: true,
-  scope: "usa"
-}
-);
+  scope: "usa",
+  geographyConfig: {
+    popupOnHover: true,
+    highlightOnHover: true,
+    borderColor: '#444',
+    borderWidth: 1.5
+  },
+  fills: {
+    'MAJOR': '#306596',
+    'MEDIUM': '#0fa0fa',
+    'MINOR': '#bada55',
+    defaultFill: 'rgba(140,86,85,0.7)'
+  },
+  data: {
+  }
+});
+
+
+
+
 
         // function to get the team after selection and put in in playerBox
         function readTeamsAndYear(event){
@@ -287,137 +349,139 @@ new Datamap(
   $('#seasonSelect').niceSelect();
   $('#teamSelect').niceSelect();
 
-function clearBuffer(){
+  function clearBuffer(){
     var checkboxesPlayers = document.getElementsByName('selectedPlayers');
     var checkboxesStats = document.getElementsByName('selectedStat');
-        for (var checkboxS of checkboxesStats) {
-      if (checkboxS.checked){
-        checkboxS.checked = false;
-
-      }};
-              for (var checkboxS of checkboxesPlayers) {
-      if (checkboxS.checked){
-        checkboxS.checked = false;
-
-      }};
-  var BufferStats=[];
-var BufferPlayer=[];
-return false;
-};
-  function listToBoxes(mylist){
-
-
-
-    for (var i = 0; i < mylist.length; i++) {
-      document.getElementById('players_selected').innerHTML += "\n";
-
-      document.getElementById('players_selected').innerHTML += "<input type=\"checkbox\"name = selectedPlayers  id=\"players"+i+"\"  value="+(mylist[i]+'').replace(/ /g,"_")+"> ";
-      document.getElementById('players_selected').innerHTML += "\n";
-      document.getElementById('players_selected').innerHTML += "<font size =5><label for=\"players"+i+"\">"+mylist[i]+"</label></font><br>";
-
-    };
-    document.getElementById('players_selected').innerHTML += "<button class=\"submitLarge\" type = \"submit\">Make Sanskey!</button>";
-
-
-    return 0;
-  };
-
-  function readPlayers(event){
-    var selectedPlayers = [];
-    var StatsList = [];
-    var checkboxesPlayers = document.getElementsByName('selectedPlayers');
-    var checkboxesStats = document.getElementsByName('selectedStat');
-
-    var indexes = [];
-
-
-
     for (var checkboxS of checkboxesStats) {
       if (checkboxS.checked){
-        StatsList.push((checkboxS.value+''));
+        checkboxS.checked = false;
 
       }};
-
-      console.log(StatsList);
-      for (var checkboxP of checkboxesPlayers) {
-        if (checkboxP.checked){
-          selectedPlayers.push((checkboxP.value+'').replace("_"," "));
+      for (var checkboxS of checkboxesPlayers) {
+        if (checkboxS.checked){
+          checkboxS.checked = false;
 
         }};
-        if (StatsList.length < 1 ||selectedPlayers.length <1) {
-          alert("Please select at least 1 player and 1 statistic to show!");
-        };
-        var stats = [StatsList];
-
-        var year = document.getElementById("seasonSelect").value.toUpperCase();
-        var tm = document.getElementById("teamSelect").value.toUpperCase();
-        var players = [];
-        d3.csv("DATA/players_teams_seasons/"+tm+year+".csv").then (function(data) {
-          for (var i = 0; i < data.length; i++) {
-
-            for (var j = 0; j<selectedPlayers.length; j++) {
-              var temp = [];
-              if (selectedPlayers[j] == data[i].Player) {
-                for(var k of StatsList){
-
-                  temp.push(Number(data[i][k]));
-                };
-                stats.push(temp);
-
-              };
-            };
-
-
-          };
-          console.log(selectedPlayers);
-
-          updateDiagram(selectedPlayers, stats);
-          return false;
-        });
+        var BufferStats=[];
+        var BufferPlayer=[];
         return false;
+      };
+      function listToBoxes(mylist){
 
+
+
+        for (var i = 0; i < mylist.length; i++) {
+          document.getElementById('players_selected').innerHTML += "\n";
+
+          document.getElementById('players_selected').innerHTML += "<input type=\"checkbox\"name = selectedPlayers  id=\"players"+i+"\"  value="+(mylist[i]+'').replace(/ /g,"_")+"> ";
+          document.getElementById('players_selected').innerHTML += "\n";
+          document.getElementById('players_selected').innerHTML += "<font size =4><label for=\"players"+i+"\">"+mylist[i]+"</label></font><br>";
+
+        };
+        document.getElementById('players_selected').innerHTML += "<button class=\"submitLarge\" type = \"submit\">Make Sanskey!</button>";
+
+
+        return 0;
       };
 
+      function readPlayers(event){
+        var selectedPlayers = [];
+        var StatsList = [];
+        var checkboxesPlayers = document.getElementsByName('selectedPlayers');
+        var checkboxesStats = document.getElementsByName('selectedStat');
 
-var BufferStats=[];
-var BufferPlayer=[];
+        var indexes = [];
 
 
 
-      function  updateDiagram(selectedPlayers,s){
-        document.getElementById('selectPlayerMap').innerHTML = "";
-        BufferStats[0] = s[0];
-        for (var i=0;i<s.length-1; i++){
+        for (var checkboxS of checkboxesStats) {
+          if (checkboxS.checked){
+            StatsList.push((checkboxS.value+''));
 
-                 BufferStats.push(s[i+1]);
+          }};
+
+          console.log(StatsList);
+
+          var year = document.getElementById("seasonSelect").value.toUpperCase();
+          var tm = document.getElementById("teamSelect").value.toUpperCase();
+          for (var checkboxP of checkboxesPlayers) {
+            if (checkboxP.checked){
+              selectedPlayers.push((checkboxP.value+'').replace("_"," ")+" "+year.slice(-2));
+
+            }};
+            if (StatsList.length < 1 ||selectedPlayers.length <1) {
+              alert("Please select at least 1 player and 1 statistic to show!");
+            };
+            var stats = [StatsList];
+
+            var players = [];
+            d3.csv("DATA/players_teams_seasons/"+tm+year+".csv").then (function(data) {
+              for (var i = 0; i < data.length; i++) {
+
+                for (var j = 0; j<selectedPlayers.length; j++) {
+                  var temp = [];
+                  if (selectedPlayers[j] == data[i].Player+" "+year.slice(-2)) {
+                    for(var k of StatsList){
+
+                      temp.push(Number(data[i][k]));
+                    };
+                    stats.push(temp);
+
+                  };
+                };
+
+
+              };
+              console.log(selectedPlayers);
+
+              updateDiagram(selectedPlayers, stats);
+              return false;
+            });
+            return false;
+
+          };
+
+
+          var BufferStats=[];
+          var BufferPlayer=[];
+
+
+
+          function  updateDiagram(selectedPlayers,s){
+            document.getElementById('selectPlayerMap').innerHTML = "";
+            BufferStats[0] = s[0];
+            for (var i=0;i<s.length-1; i++){
+
+             BufferStats.push(s[i+1]);
+           };
+           for (var k of selectedPlayers){
+             BufferPlayer.push(k);
+           };
+
+           playersList = BufferPlayer;
+           stats = BufferStats;
+           drawChart();
+
+
+           for (var player of BufferPlayer) {
+            console.log(player);
+            document.getElementById('selectPlayerMap').innerHTML += "<option value=\""+(player+'').replace(/ /g,"_")+"\">"+(player+'').slice(0,-3)+"</option>";
+          };
+          document.getElementById('selectPlayerMap').innerHTML += "<input name=\"playersMap\" class = \"submitMap\" type=\"submit\" value=\"GO!\" >";
+
+          document.getElementById('selectPlayerMap').innerHTML += "</select>";
+
+          $('#selectPlayerMap').niceSelect();
+
+
+
+
+          return false;
         };
-        for (var k of selectedPlayers){
-                 BufferPlayer.push(k);
-        };
-
-        playersList = BufferPlayer;
-        stats = BufferStats;
-         drawChart();
-
-   
-         for (var player of selectedPlayers) {
-          document.getElementById('selectPlayerMap').innerHTML += "<option value=\""+(player+'').replace(/ /g,"_")+"\">"+player+"</option>";
-        };
-        document.getElementById('selectPlayerMap').innerHTML += "<input name=\"playersMap\" class = \"submitMap\" type=\"submit\" value=\"GO!\" >";
-
-        document.getElementById('selectPlayerMap').innerHTML += "</select>";
-
-   $('#selectPlayerMap').niceSelect();
 
 
+        </script>
 
+      </body>
 
-      return false;
-    };
-
-
-    </script>
-
-  </body>
-
-  </html>
+      </html>
