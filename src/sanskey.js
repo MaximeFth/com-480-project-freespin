@@ -1,4 +1,4 @@
-  var playersList = ['player1', 'player5'];
+  var playersList = ['player1', 'player2'];
   var stats = [["free throws", "pts"],[5,4], [3,5] ];
 
 

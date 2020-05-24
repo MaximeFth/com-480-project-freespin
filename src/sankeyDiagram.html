@@ -22,7 +22,7 @@
   <script src="map.js"></script>
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
-      <script src="datamaps.all.js"></script>
+  <script src="datamaps.all.js"></script>
   <link href="style.css" rel="stylesheet">
 </head>
 
@@ -252,12 +252,12 @@
 
 <script>
 function updateMap(){
-bubbles = [];
+  bubbles = [];
   var playerMap = document.getElementById("selectPlayerMap").value;
   var stateAb;
   var stateVisited = [];
   d3.csv("DATA/draftStates/"+(playerMap+'').slice(0,-3)+".csv").then (function(data) {
-       d3.csv("DATA/teamState.csv").then (function(team) {
+   d3.csv("DATA/teamState.csv").then (function(team) {
 
     for (var i = 0; i < data.length; i++) {
       for (var j = 0; j < team.length; j++) {
@@ -266,28 +266,31 @@ bubbles = [];
           break;
         }};
         stateVisited.push(stateAb+'');
-      bubbles.push(
-      {
-        centered: stateAb+'',
-        fillKey: "MAJOR",
-        radius: Number(data[i]["PER"])
+        bubbles.push(
+        {
+          centered: stateAb+'',
+          fillKey: "MAJOR",
+          radius: Number(data[i]["PER"])
 
 
-      }
-      );
-      
+        }
+        );
+
       };
-      arcs = []
-      for (var i = 0; i < stateVisited.length-1; i++) {
+      var arcs = [];
+      for (var i = 0; i < stateVisited.length; i++) {
         arcs.push(
-  {
-    origin: stateVisited[i],
-    destination: stateVisited[i+1]
-  })
+        {
+          origin: stateVisited[i],
+          destination: stateVisited[i+1]
+        });
+
+        
       };
-  map.arc(arcs, {strokeWidth: 3, arcSharpness: 1.1}, 
-                {animationSpeed: 0.000001});
-    
+      map.arc(arcs, {strokeWidth: 3, arcSharpness: 1.4}, 
+        {
+          animationSpeed: 2
+        });
          setTimeout(() => { // only start drawing bubbles on the map when map has rendered completely.
           map.bubbles(bubbles, {
             popupTemplate: function (geo, data) {
@@ -296,13 +299,13 @@ bubbles = [];
           });
         }, 1000);
 
-    
 
-    return false;
-  });
 
-    return false;
-  });
+         return false;
+       });
+
+return false;
+});
 return false;
 
 }
@@ -327,7 +330,7 @@ new Datamap(
     win: '#0fa0fa',
     defaultFill: 'rgba(140,86,85,0.7)'
   },
-    data: {
+  data: {
 
   }
 })
@@ -388,7 +391,11 @@ new Datamap(
           document.getElementById('players_selected').innerHTML += "<font size =4><label for=\"players"+i+"\">"+mylist[i]+"</label></font><br>";
 
         };
-        document.getElementById('players_selected').innerHTML += "<button class=\"submitLarge\" type = \"submit\">Make Sanskey!</button>";
+        if(mylist.length<1){
+          document.getElementById('players_selected').innerHTML += "<font size=10>Data Not available. Try picking a later year.</font>";
+        }
+        else{        document.getElementById('players_selected').innerHTML += "<button class=\"submitLarge\" type = \"submit\">Make Sanskey!</button>";
+}
 
 
         return 0;
