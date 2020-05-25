@@ -225,28 +225,32 @@ function updateMap(){
   bubbles = [];
   var playerMap = document.getElementById("selectPlayerMap").value;
   var stateAb;
+  var indexTeam;
   var stateVisited = [];
   d3.csv("DATA/draftStates/"+(playerMap+'').slice(0,-3)+".csv").then (function(data) {
-   d3.csv("DATA/teamState.csv").then (function(team) {
+   d3.csv("DATA/teamState2.csv").then (function(team) {
 
     for (var i = 0; i < data.length; i++) {
       for (var j = 0; j < team.length; j++) {
         if(data[i].Tm ==team[j].TeamAbr){
           stateAb = team[j].StateAbr;
+          indexTeam = j;
+          console.log(team[indexTeam].City)
           break;
         }};
         stateVisited.push(stateAb+'');
         bubbles.push(
         {
+          city: team[indexTeam].City,
           centered: stateAb+'',
-          fillKey: "MAJOR",
+          fillKey: i+1+'',
           radius: Number(data[i]["PER"])
         }
         );
 
       };
       var arcs = [];
-      for (var i = 0; i < stateVisited.length; i++) {
+      for (var i = 0; i < stateVisited.length-1; i++) {
         arcs.push(
         {
           origin: stateVisited[i],
@@ -254,14 +258,19 @@ function updateMap(){
         });
       }; // end for
 
+
+try {
       map.arc(arcs, {strokeWidth: 3, arcSharpness: 1.4}, 
         {
           animationSpeed: 2
         });
+} catch (error) {
+  console.log(error);
+}
          setTimeout(() => { // only start drawing bubbles on the map when map has rendered completely.
           map.bubbles(bubbles, {
             popupTemplate: function (geo, data) {
-              return '<div class="hoverinfo">city: ${data.state}, Slums: ${data.radius}%</div>';
+              return '<div class="hoverinfo">Team n°'+data.fillKey+'<br/>PER: '+data.radius+'<br/>City:'+data.city+'</div>';
             }
           });
         }, 1000); // end timeout
@@ -286,6 +295,14 @@ var map =
       borderWidth: 1.5
     },
     fills: {
+      '1': '#e6e6ff',
+      '2':'#b3b3ff',
+      '3':'#8080ff',
+      '4':'#4d4dff',
+      '5':'#1a1aff',
+      '6':'#0000cc',
+      '7':'#000099',
+      '8':'#00001a',
       'MAJOR': '#306596',
       'MEDIUM': '#0fa0fa',
       'MINOR': '#bada55',
@@ -293,6 +310,7 @@ var map =
       defaultFill: 'rgba(140,86,85,0.7)'
     },
     data: {
+
 
     }
   })
