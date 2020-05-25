@@ -83,7 +83,7 @@
           <option value="MIL">Milwaukee Bucks</option>
           <option value="WAS">Washington Wizards</option>
           <option value="PHX">Phoenix Suns</option>
-                    <option value="TOT">Toronto Raptors</option>
+          <option value="TOR">Toronto Raptors</option>
 
 
         </select>
@@ -135,8 +135,8 @@
       <br>
       <br>
     </font>
- <div id = "playersBox">
-    <form id="players_selected", name= "playerSelection", onSubmit = "return readPlayers()"></form>
+    <div id = "playersBox">
+      <form id="players_selected", name= "playerSelection", onSubmit = "return readPlayers()"></form>
       <!-- clear button-->
       <form name="test" onSubmit="return clearBuffer()">
         <input name="Submit" class = "Clear" type="submit" value="Clear!" >
@@ -217,7 +217,10 @@
   <div id="PlayerMap">
     <select onchange="updateMap()" name="selectPlayerMap" id="selectPlayerMap"></select>
   </div>
-  <div id = "mapDiv"> </div>
+  <div id = "mapDiv"> 
+
+  </div>
+
 
 
 </div>
@@ -250,7 +253,8 @@ function updateMap(){
           city: team[indexTeam].City,
           centered: stateAb+'',
           fillKey: i+1+'',
-          radius: Number(data[i]["PER"])
+          radius: Number(data[i]["PER"]),
+          year: Number(data[i]["Year"])
         }
         );
 
@@ -265,18 +269,18 @@ function updateMap(){
       }; // end for
 
 
-try {
-      map.arc(arcs, {strokeWidth: 3, arcSharpness: 1.4}, 
+      try {
+        map.arc(arcs, {strokeWidth: 3, arcSharpness: 1.4}, 
         {
           animationSpeed: 2
         });
-} catch (error) {
-  console.log(error);
-}
+      } catch (error) {
+        console.log(error);
+      }
          setTimeout(() => { // only start drawing bubbles on the map when map has rendered completely.
           map.bubbles(bubbles, {
             popupTemplate: function (geo, data) {
-              return '<div class="hoverinfo">Team n°'+data.fillKey+'<br/>PER: '+data.radius+'<br/>City:'+data.city+'</div>';
+              return '<div class="hoverinfo">Team n°'+data.fillKey+', Year:'+ data.year+'<br/>PER: '+data.radius+'<br/>City:'+data.city+'</div>';
             }
           });
         }, 1000); // end timeout
@@ -288,39 +292,132 @@ return false;
 } // end function update map
 
 var map =
-  new Datamap(
-  {
+new Datamap(
+{
 
-    element: document.getElementById('mapDiv'),
-    responsive: true,
-    scope: "usa",
-    geographyConfig: {
-      popupOnHover: true,
-      highlightOnHover: true,
-      borderColor: '#444',
-      borderWidth: 1.5
+  element: document.getElementById('mapDiv'),
+  responsive: true,
+  scope: "usa",
+  geographyConfig: {
+    popupOnHover: true,
+    popupTemplate: function(geography, data) {
+      return '<div class="hoverinfo">' + geography.properties.name + '<br/>Number of players: <Strong>' +  data.Number_of_players + '</strong> '
     },
-    fills: {
-      '1': '#e6e6ff',
-      '2':'#b3b3ff',
-      '3':'#8080ff',
-      '4':'#4d4dff',
-      '5':'#1a1aff',
-      '6':'#0000cc',
-      '7':'#000099',
-      '8':'#00001a',
-      'MAJOR': '#306596',
-      'MEDIUM': '#0fa0fa',
-      'MINOR': '#bada55',
-      win: '#0fa0fa',
-      defaultFill: 'rgba(140,86,85,0.7)'
-    },
-    data: {
+    highlightOnHover: true,
+    borderColor: '#444',
+    borderWidth: 1.5
+  },
+  fills: {
+    '1': '#e6e6ff',
+    '2':'#b3b3ff',
+    '3':'#8080ff',
+    '4':'#4d4dff',
+    '5':'#1a1aff',
+    '6':'#0000cc',
+    '7':'#000099',
+    '8':'#00001a',
+    'MEDIUM': '#0fa0fa',
+    'MINOR': '#bada55',
+    'Low': '#e6e6ff',
+    'Small': '#b3b3ff',
+    'Medium': '#8080ff',
+    'Large': '#4d4dff',
+    'Huge': '#4d4dff',
+    defaultFill: 'rgba(140,86,85,0.7)'
+  },
+  data: {
+    CA: {
+     fillkey: 'Huge',
+     "Number_of_players":343+296+263+367
+   },
 
+   "CO": {
+     fillkey: "Medium",
+     "Number_of_players":307
+   },
 
-    }
-  })
+   "FL": {
+     fillkey: "Large",
+     "Number_of_players":222+233
+   },
+   "GA": {
+     fillkey: "Medium",
+     "Number_of_players":362
+   },
+   "IL": {
+     fillkey: "Medium",
+     "Number_of_players":348
+   },
+   "IN": {
+     fillkey: "Small",
+     "Number_of_players":260
+   },
+   "LA": {
+     fillkey: "Low",
+     "Number_of_players":60
+   },
+   "MA": {
+     fillkey: "Large",
+     "Number_of_players":405
+   },
+   "MI": {
+     fillkey: "Medium",
+     "Number_of_players":398
+   },
+   "MN": {
+     fillkey: "Small",
+     "Number_of_players":227
+   },
+   "NY": {
+     fillkey: "Large",
+     "Number_of_players":440
+   },
+   "NC": {
+     fillkey: "Low",
+     "Number_of_players":95
+   },
+   "OH": {
+     fillkey: "Medium",
+     "Number_of_players":367
+   },
+   "OK": {
+     fillkey: "Low",
+     "Number_of_players":77
+   },
+   "OR": {
+     fillkey: "Medium",
+     "Number_of_players":319
+   },
+   "PA": {
+     fillkey: "Large",
+     "Number_of_players":416
+   },
+   "TN": {
+     fillkey: "Low",
+     "Number_of_players":147
+   },
 
+   "TX": {
+     fillkey: "Large",
+     "Number_of_players":327+298+322
+   },
+
+   "UT": {
+     fillkey: "Small",
+     "Number_of_players":235
+   },
+   "WI": {
+     fillkey: "Medium",
+     "Number_of_players":378
+   },
+   "WA": {
+     fillkey: "Low",
+     "Number_of_players":170
+   }
+
+ }
+})
+map.labels();
 
 
 // function to get the team after selection and put in in playerBox
@@ -363,116 +460,116 @@ function clearBuffer(){
       BufferPlayer=[];
       return false;
     };
-function listToBoxes(mylist){
+    function listToBoxes(mylist){
 
 
 
-    for (var i = 0; i < mylist.length; i++) {
-      document.getElementById('players_selected').innerHTML += "\n";
+      for (var i = 0; i < mylist.length; i++) {
+        document.getElementById('players_selected').innerHTML += "\n";
 
-      document.getElementById('players_selected').innerHTML += "<input type=\"checkbox\"name = selectedPlayers  id=\"players"+i+"\"  value="+(mylist[i]+'').replace(/ /g,"_")+"> ";
-      document.getElementById('players_selected').innerHTML += "\n";
-      document.getElementById('players_selected').innerHTML += "<font size =4><label for=\"players"+i+"\">"+mylist[i]+"</label></font><br>";
+        document.getElementById('players_selected').innerHTML += "<input type=\"checkbox\"name = selectedPlayers  id=\"players"+i+"\"  value="+(mylist[i]+'').replace(/ /g,"_")+"> ";
+        document.getElementById('players_selected').innerHTML += "\n";
+        document.getElementById('players_selected').innerHTML += "<font size =4><label for=\"players"+i+"\">"+mylist[i]+"</label></font><br>";
 
-    };
-    if(mylist.length<1){
-      document.getElementById('players_selected').innerHTML += "<font size=10>Data Not available. Try picking a later year.</font>";
+      };
+      if(mylist.length<1){
+        document.getElementById('players_selected').innerHTML += "<font size=10>Data Not available. Try picking a later year.</font>";
+      }
+      else{        document.getElementById('players_selected').innerHTML += "<button class=\"submitLarge\" type = \"submit\">Make Sanskey!</button>";
     }
-    else{        document.getElementById('players_selected').innerHTML += "<button class=\"submitLarge\" type = \"submit\">Make Sanskey!</button>";
-}
 
 
-return false;
-};
+    return false;
+  };
 
-function readPlayers(event){
-  var selectedPlayers = [];
-  var StatsList = [];
-  var checkboxesPlayers = document.getElementsByName('selectedPlayers');
-  var checkboxesStats = document.getElementsByName('selectedStat');
+  function readPlayers(event){
+    var selectedPlayers = [];
+    var StatsList = [];
+    var checkboxesPlayers = document.getElementsByName('selectedPlayers');
+    var checkboxesStats = document.getElementsByName('selectedStat');
 
-  var indexes = [];
+    var indexes = [];
 
 
 
-  for (var checkboxS of checkboxesStats) {
-    if (checkboxS.checked){
-      StatsList.push((checkboxS.value+''));
+    for (var checkboxS of checkboxesStats) {
+      if (checkboxS.checked){
+        StatsList.push((checkboxS.value+''));
 
-          }};
+      }};
 
-          console.log(StatsList);
+      console.log(StatsList);
 
-          var year = document.getElementById("seasonSelect").value.toUpperCase();
-          var tm = document.getElementById("teamSelect").value.toUpperCase();
-          for (var checkboxP of checkboxesPlayers) {
-            if (checkboxP.checked){
-              selectedPlayers.push((checkboxP.value+'').replace("_"," ")+" "+year.slice(-2));
+      var year = document.getElementById("seasonSelect").value.toUpperCase();
+      var tm = document.getElementById("teamSelect").value.toUpperCase();
+      for (var checkboxP of checkboxesPlayers) {
+        if (checkboxP.checked){
+          selectedPlayers.push((checkboxP.value+'').replace("_"," ")+" "+year.slice(-2));
 
-            }};
-            if (StatsList.length < 1 ||selectedPlayers.length <1) {
-              alert("Please select at least 1 player and 1 statistic to show!");
-            };
-            var stats = [StatsList];
+        }};
+        if (StatsList.length < 1 ||selectedPlayers.length <1) {
+          alert("Please select at least 1 player and 1 statistic to show!");
+        };
+        var stats = [StatsList];
 
-            var players = [];
-            d3.csv("DATA/players_teams_seasons/"+tm+year+".csv").then (function(data) {
-              for (var i = 0; i < data.length; i++) {
-                for (var j = 0; j<selectedPlayers.length; j++) {
-                  var temp = [];
-                  if (selectedPlayers[j] == data[i].Player+" "+year.slice(-2)) {
-                    for(var k of StatsList){
-                      temp.push(Number(data[i][k]));
-                    };
-                    stats.push(temp);
+        var players = [];
+        d3.csv("DATA/players_teams_seasons/"+tm+year+".csv").then (function(data) {
+          for (var i = 0; i < data.length; i++) {
+            for (var j = 0; j<selectedPlayers.length; j++) {
+              var temp = [];
+              if (selectedPlayers[j] == data[i].Player+" "+year.slice(-2)) {
+                for(var k of StatsList){
+                  temp.push(Number(data[i][k]));
+                };
+                stats.push(temp);
                   }; // end if
                 };// end for j
               }; // end for i
 
-      console.log(selectedPlayers);
-      updateDiagram(selectedPlayers, stats);
-      return false;
+              console.log(selectedPlayers);
+              updateDiagram(selectedPlayers, stats);
+              return false;
     }); // end read csv
-    return false;
+        return false;
 
-};
-var BufferStats=[];
-var BufferPlayer=[];
+      };
+      var BufferStats=[];
+      var BufferPlayer=[];
 
-function isInList(k, list){
-  for (var i = 0; i < list.length; i++) {
-    if(list[i] == k){
-      return true;
-    }
-  };
-  return false;
-};
+      function isInList(k, list){
+        for (var i = 0; i < list.length; i++) {
+          if(list[i] == k){
+            return true;
+          }
+        };
+        return false;
+      };
 
-function  updateDiagram(selectedPlayers,s){
-  document.getElementById('selectPlayerMap').innerHTML = "";
-  BufferStats[0] = s[0];
-  for (var i=0;i<s.length-1; i++){
+      function  updateDiagram(selectedPlayers,s){
+        document.getElementById('selectPlayerMap').innerHTML = "";
+        BufferStats[0] = s[0];
+        for (var i=0;i<s.length-1; i++){
 
-   BufferStats.push(s[i+1]);
-  };
-  for (var k of selectedPlayers){
+         BufferStats.push(s[i+1]);
+       };
+       for (var k of selectedPlayers){
 
-    if(!(isInList(k,BufferPlayer))){
-    BufferPlayer.push(k);};
-  };
+        if(!(isInList(k,BufferPlayer))){
+          BufferPlayer.push(k);};
+        };
 
-  playersList = BufferPlayer;
-  stats = BufferStats;
-  drawChart();
-  for (var player of BufferPlayer) {
-  document.getElementById('selectPlayerMap').innerHTML += "<option value=\""+(player+'').replace(/ /g,"_")+"\">"+(player+'').slice(0,-3)+"</option>";
-  };
-  document.getElementById('selectPlayerMap').innerHTML += "<input name=\"playersMap\" class = \"submitMap\" type=\"submit\" value=\"GO!\" >";
-  document.getElementById('selectPlayerMap').innerHTML += "</select>";
-  $('#selectPlayerMap').niceSelect();
-return false;
-};
-</script>
+        playersList = BufferPlayer;
+        stats = BufferStats;
+        drawChart();
+        for (var player of BufferPlayer) {
+          document.getElementById('selectPlayerMap').innerHTML += "<option value=\""+(player+'').replace(/ /g,"_")+"\">"+(player+'').slice(0,-3)+"</option>";
+        };
+        document.getElementById('selectPlayerMap').innerHTML += "<input name=\"playersMap\" class = \"submitMap\" type=\"submit\" value=\"GO!\" >";
+        document.getElementById('selectPlayerMap').innerHTML += "</select>";
+        $('#selectPlayerMap').niceSelect();
+        return false;
+      };
+      </script>
 
-</body>
-</html>
+    </body>
+    </html>
