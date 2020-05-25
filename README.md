@@ -131,7 +131,7 @@ Functional project prototype review.
 
 **The PDF can be found here :** [here](/Milestone%202.pdf)
 
-**The website can be found here :** [here](https://com-480-data-visualization.github.io/com-480-project-freespin/)
+**The website can be found here :** [here](https://com-480-data-visualization.github.io/com-480-project-freespin/NBAVisu)
 
 ## Milestone 3 (Thursday 28th May, 5pm)
 
