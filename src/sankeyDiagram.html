@@ -82,6 +82,10 @@
           <option value="UTA">Utah Jazz</option>
           <option value="MIL">Milwaukee Bucks</option>
           <option value="WAS">Washington Wizards</option>
+          <option value="PHX">Phoenix Suns</option>
+                    <option value="TOT">Toronto Raptors</option>
+
+
         </select>
         <br>
         <label for="season"></label>
@@ -222,6 +226,8 @@
 
 <script>
 function updateMap(){
+  //  $('#mapDiv').load(document.URL +  ' #mapDiv');
+
   bubbles = [];
   var playerMap = document.getElementById("selectPlayerMap").value;
   var stateAb;
@@ -323,7 +329,7 @@ function readTeamsAndYear(event){
   var year = document.getElementById("seasonSelect").value.toUpperCase();
   var tm = document.getElementById("teamSelect").value.toUpperCase();
   var players = [];
-  console.log("DATA/players_teams_seasons/"+tm+year+".csv");
+
   d3.csv("DATA/players_teams_seasons/"+tm+year+".csv").then (function(data) {
 
     for (var i = 0; i < data.length; i++) {
@@ -340,7 +346,6 @@ function readTeamsAndYear(event){
 //make the nice selections boxes instead of ordinary ones. select by id
 $('#seasonSelect').niceSelect();
 $('#teamSelect').niceSelect();
-
 function clearBuffer(){
   var checkboxesPlayers = document.getElementsByName('selectedPlayers');
   var checkboxesStats = document.getElementsByName('selectedStat');
@@ -354,8 +359,8 @@ function clearBuffer(){
         checkboxS.checked = false;
 
       }};
-      var BufferStats=[];
-      var BufferPlayer=[];
+      BufferStats=[];
+      BufferPlayer=[];
       return false;
     };
 function listToBoxes(mylist){
@@ -434,7 +439,14 @@ function readPlayers(event){
 var BufferStats=[];
 var BufferPlayer=[];
 
-
+function isInList(k, list){
+  for (var i = 0; i < list.length; i++) {
+    if(list[i] == k){
+      return true;
+    }
+  };
+  return false;
+};
 
 function  updateDiagram(selectedPlayers,s){
   document.getElementById('selectPlayerMap').innerHTML = "";
@@ -444,13 +456,15 @@ function  updateDiagram(selectedPlayers,s){
    BufferStats.push(s[i+1]);
   };
   for (var k of selectedPlayers){
-    BufferPlayer.push(k);
+
+    if(!(isInList(k,BufferPlayer))){
+    BufferPlayer.push(k);};
   };
+
   playersList = BufferPlayer;
   stats = BufferStats;
   drawChart();
   for (var player of BufferPlayer) {
-    console.log(player);
   document.getElementById('selectPlayerMap').innerHTML += "<option value=\""+(player+'').replace(/ /g,"_")+"\">"+(player+'').slice(0,-3)+"</option>";
   };
   document.getElementById('selectPlayerMap').innerHTML += "<input name=\"playersMap\" class = \"submitMap\" type=\"submit\" value=\"GO!\" >";
