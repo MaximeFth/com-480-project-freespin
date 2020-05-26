@@ -425,6 +425,7 @@
       for (var j = 0; j < team.length; j++) {
         if(data[i].Tm ==team[j].TeamAbr){
           stateAb = team[j].StateAbr;
+           if (stateAb == " MN") {stateAb = "MN"};
           indexTeam = j;
           console.log(team[indexTeam].City);
           break;
@@ -440,17 +441,7 @@
           radius: Number(data[i]["PER"]),
           year: Number(data[i]["Year"])
         }
-        );}else if (stateAb == "MN") {bubbles.push(
-        {
-          city: team[indexTeam].City,
-          latitude: 46.392410,
-          longitude: -94.636230,
-         fillKey: '1',
-          numberTeam: i+1+'',
-          radius: Number(data[i]["PER"]),
-          year: Number(data[i]["Year"])
-        }
-        );}else{
+        );} else{
         bubbles.push(
         {
           city: team[indexTeam].City,
@@ -744,20 +735,21 @@ function clearBuffer(){
 
         var players = [];
         d3.csv("DATA/players_teams_seasons/"+tm+year+".csv").then (function(data) {
+
           for (var i = 0; i < data.length; i++) {
             for (var j = 0; j<selectedPlayers.length; j++) {
               var temp = [];
               if (selectedPlayers[j] == data[i].Player+" "+year.slice(-2)) {
                 for(var k of StatsList){
                   temp.push(Number(data[i][k]));
+
                 };
                 stats.push(temp);
                   }; // end if
                 };// end for j
               }; // end for i
 
-              console.log(selectedPlayers);
-              updateDiagram(selectedPlayers, stats);
+               updateDiagram(selectedPlayers, stats);
               return false;
     }); // end read csv
         return false;
@@ -790,6 +782,7 @@ function clearBuffer(){
 
         playersList = BufferPlayer;
         stats = BufferStats;
+        console.log(BufferStats);
         drawChart();
         for (var player of BufferPlayer) {
           document.getElementById('selectPlayerMap').innerHTML += "<option value=\""+(player+'').replace(/ /g,"_")+"\">"+(player+'').slice(0,-3)+"</option>";
