@@ -66,7 +66,7 @@
           <li class="menu-active"><a href="#hero">Home</a></li>
           <li><a href="#about">About Us</a></li>
           <li><a href="#team">Team</a></li>   
-          <li><a href="#Visualization">Visualisation</a></li>
+          <li><a href="#Visualization">Visualization</a></li>
 
 
 
@@ -80,8 +80,8 @@
     ============================-->
     <section id="hero">
       <div class="hero-container">
-        <h1>NBA Visualisation</h1>
-        <h2>Project of data visualisation of EPFL </h2>
+        <h1>NBA Visualization</h1>
+        <h2>Project of data visualization of EPFL </h2>
         <a href="#about" class="btn-get-started">Explore</a>
       </div>
     </section><!-- #hero -->
@@ -200,11 +200,11 @@
         </div>
       </section><!-- #team -->
         <!--==========================
-      Visualisation Section
+      Visualization Section
       ============================-->
-      <section id="Visualisation">
+      <section id="Visualization">
         <div id="content">
-          <h1> Visualisation</h1>
+          <h1> Visualization</h1>
           <!-- div for the sanskey diagram -->
           <div id ="sankeyVisu">      
           </div>
@@ -212,7 +212,6 @@
           <!-- div for the selection of teams and seasons -->
           <div id="features">
             <font size="5">
-              <form name="playerName" onSubmit="return readTeamsAndYear()">
                 <label for="team-select"></label>
                 <select name="TeamsSelect" id="teamSelect">
                   <option value="">--Select a Team--</option>
@@ -249,48 +248,47 @@
                 </select>
                 <br>
                 <label for="season"></label>
-                <select name="Season" id="seasonSelect">
+                <select name="Season" id="seasonSelect" onchange="return readTeamsAndYear()">
                   <option value="">--Select a season--</option>
-                  <option value="1980">1980</option>
-                  <option value="1981">1981</option>
-                  <option value="1982">1982</option>
-                  <option value="1983">1983</option>
-                  <option value="1984">1984</option>
-                  <option value="1985">1985</option>
-                  <option value="1986">1986</option>
-                  <option value="1987">1987</option>
-                  <option value="1988">1988</option>
-                  <option value="1989">1989</option>
-                  <option value="1990">1990</option>        
-                  <option value="1991">1991</option>
-                  <option value="1992">1992</option>
-                  <option value="1993">1993</option>
-                  <option value="1994">1994</option>
-                  <option value="1995">1995</option>
-                  <option value="1996">1996</option>
-                  <option value="1997">1997</option>
-                  <option value="1998">1998</option>
-                  <option value="1999">1999</option>
-                  <option value="2000">2000</option>
-                  <option value="2001">2001</option>
-                  <option value="2002">2002</option>
-                  <option value="2003">2003</option>
-                  <option value="2004">2004</option>
-                  <option value="2005">2005</option>
-                  <option value="2006">2006</option>
-                  <option value="2007">2007</option>
-                  <option value="2008">2008</option>
-                  <option value="2009">2009</option>
-                  <option value="2010">2010</option>
-                  <option value="2011">2011</option>
-                  <option value="2012">2012</option>
-                  <option value="2013">2013</option>
-                  <option value="2014">2014</option>
-                  <option value="2015">2015</option>
-                  <option value="2016">2016</option>
+                  <option value="2018">2018</option>
                   <option value="2017">2017</option>
-                  <input name="Submit" class = "submit" type="submit" value="Search!" >
-                </form>
+                  <option value="2016">2016</option>
+                  <option value="2015">2015</option>
+                  <option value="2014">2014</option>
+                  <option value="2013">2013</option>
+                  <option value="2012">2012</option>
+                  <option value="2011">2011</option>
+                  <option value="2010">2010</option>
+                  <option value="2009">2009</option>
+                  <option value="2008">2008</option>
+                  <option value="2007">2007</option>
+                  <option value="2006">2006</option>
+                  <option value="2005">2005</option>
+                  <option value="2004">2004</option>
+                  <option value="2003">2003</option>
+                  <option value="2002">2002</option>
+                  <option value="2001">2001</option>
+                  <option value="2000">2000</option>
+                  <option value="1999">1999</option>
+                  <option value="1998">1998</option>
+                  <option value="1997">1997</option>
+                  <option value="1996">1996</option>
+                  <option value="1995">1995</option>
+                  <option value="1994">1994</option>
+                  <option value="1993">1993</option>
+                  <option value="1992">1992</option>
+                  <option value="1991">1991</option>
+                  <option value="1990">1990</option>
+                  <option value="1989">1989</option>
+                  <option value="1988">1988</option>
+                  <option value="1987">1987</option>
+                  <option value="1986">1986</option>
+                  <option value="1985">1985</option>
+                  <option value="1984">1984</option>
+                  <option value="1983">1983</option>
+                  <option value="1982">1982</option>
+                  <option value="1981">1981</option>
+                  <option value="1980">1980</option>
               </select>
               <br>
               <br>
@@ -299,7 +297,6 @@
               <form id="players_selected", name= "playerSelection", onSubmit = "return readPlayers()"></form>
               <!-- clear button-->
               <form name="test" onSubmit="return clearBuffer()">
-                <input name="Submit" class = "Clear" type="submit" value="Clear!" >
               </form>
 
 
@@ -380,7 +377,7 @@
             <select name="selectPlayerMap" id="selectPlayerMap"></select>
             <div class = "UPMAP">
               <form name="UpdMap" onSubmit="return updateMap()">
-                <input name="Submit" class = "c" type="submit" value="DRAW!" >
+                <input name="Submit" class = "submitDraw" type="submit" value="DRAW!" >
               </form></div>
           </div>
           <div id = "mapDiv"> 
@@ -394,6 +391,8 @@
 
 
       <script>
+
+     
       var arcs = []
       window.onload = function(){
         var s = document.getElementById('teamSelect').options, 
@@ -674,6 +673,7 @@ function readTeamsAndYear(event){
 $('#seasonSelect').niceSelect();
 $('#teamSelect').niceSelect();
 
+
 function clearBuffer(){
   var checkboxesPlayers = document.getElementsByName('selectedPlayers');
   var checkboxesStats = document.getElementsByName('selectedStat');
@@ -707,6 +707,7 @@ function clearBuffer(){
         document.getElementById('players_selected').innerHTML += "<font size=10>Data Not available. Try picking a later year.</font>";
       }
       else{        document.getElementById('players_selected').innerHTML += "<button class=\"submitLarge\" type = \"submit\">Make Sankey!</button>";
+      document.getElementById('players_selected').innerHTML += "<input class=\"Clear\" name = \"submit\ type = \"submit\" value = \Clear!>";
 
     }
 
@@ -821,7 +822,7 @@ function clearBuffer(){
         };
         return finale;
       }
-    </script>    </section><!-- #Visualisation -->
+    </script>    </section><!-- #Visualization -->
     
 
   <!--==========================
