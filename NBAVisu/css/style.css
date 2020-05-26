@@ -1195,9 +1195,7 @@ li a:hover {
 
 
 /* On mouse hover, lighten state color */
-path:hover {
-  fill-opacity: .7;
-}
+
 
 /* Style for Custom Tooltip */
 div.tooltip {  

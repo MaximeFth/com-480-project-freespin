@@ -524,16 +524,19 @@ new Datamap(
   element: document.getElementById('mapDiv'),
   responsive: true,
   scope: "usa",
+
   geographyConfig: {
     popupOnHover: true,
+    
     popupTemplate: function(geography, data) {
+
       return '<div class="hoverinfo">' + geography.properties.name + '<br/>Number of players: <Strong>' +  data.Number_of_players + '</strong> '
     },
     borderColor: '#444',
     borderWidth: 1.5
   },
   fills: {
-    '1':'rgba(200,10,10,3)',
+    '1':'rgb(210, 77, 255,10)',
     '2':'#b3b3ff',
     '3':'#8080ff',
     '4':'#4d4dff',
@@ -548,8 +551,9 @@ new Datamap(
     'Medium':'#8080ff',
     'Large':'#4d4dff',
     'Huge':'rgba(20,20,255,1)',
-    defaultFill: 'rgba(20,20,135,0.2)'
+    defaultFill: 'rgba(0,0,0,0)'
   },
+
   data: {
     "CA": {
      "fillKey": "Huge",
