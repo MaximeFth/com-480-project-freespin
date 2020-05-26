@@ -376,7 +376,12 @@
 
 
           <div id="PlayerMap">
-            <select onchange="updateMap()" name="selectPlayerMap" id="selectPlayerMap"></select>
+
+            <select name="selectPlayerMap" id="selectPlayerMap"></select>
+            <div class = "UPMAP">
+              <form name="UpdMap" onSubmit="return updateMap()">
+                <input name="Submit" class = "c" type="submit" value="DRAW!" >
+              </form></div>
           </div>
           <div id = "mapDiv"> 
 
@@ -389,6 +394,7 @@
 
 
       <script>
+      var arcs = []
       window.onload = function(){
         var s = document.getElementById('teamSelect').options, 
         l = 0, 
@@ -408,10 +414,12 @@
       };
 
 
-
-      function updateMap(){
-  //  $('#mapDiv').load(document.URL +  ' #mapDiv');
-
+function max(a,b){
+  if (a>b) {return a;} else {return b};
+}
+function updateMap(){
+try{map.svg.selectAll('path.datamaps-arc').remove();
+map.svg.selectAll('circle.datamaps-bubble').remove();}catch(error){console.log(error)}
   bubbles = [];
   var playerMap = document.getElementById("selectPlayerMap").value;
   var stateAb;
@@ -431,6 +439,8 @@
           break;
         }};
         stateVisited.push(stateAb+'');
+        try{        console.log(team[indexTeam].City);
+} catch{console.log(team[indexTeam]);}
         if (stateAb == "ON") {bubbles.push(
         {
           city: team[indexTeam].City,
@@ -438,7 +448,7 @@
           longitude: -79.347015,
          fillKey: '1',
           numberTeam: i+1+'',
-          radius: Number(data[i]["PER"]),
+          radius: max(0.1,Number(data[i]["PER"])),
           year: Number(data[i]["Year"])
         }
         );} else{
@@ -448,13 +458,13 @@
           centered: stateAb+'',
           fillKey: '1',
           numberTeam: i+1+'',
-          radius: Number(data[i]["PER"]),
+          radius: max(0.1,Number(data[i]["PER"])),
           year: Number(data[i]["Year"])
         }
         );}
 
       };
-      var arcs = [];
+      arcs = [];
       console.log(stateVisited);
       for (var i = 0; i < stateVisited.length-1; i++) {
                   console.log(stateVisited[i]);
