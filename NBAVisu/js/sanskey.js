@@ -32,10 +32,11 @@
   };
   for (var i =0; i<playersList.length; i++){
     for (var k = 0; k < stats[0].length; k++) {
-      
+      console.log(stats);
+      console.log(playersList);
    
     datatable1.addRows([
-     [ playersList[i], stats[0][k], stats[i+1][k]]
+     [ playersList[i], stats[0][k], Number(stats[i+1][k])]
      ]);
   }
    };

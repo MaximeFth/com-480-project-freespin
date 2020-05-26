@@ -431,16 +431,20 @@ map.svg.selectAll('circle.datamaps-bubble').remove();}catch(error){console.log(e
 
     for (var i = 0; i < data.length; i++) {
       for (var j = 0; j < team.length; j++) {
+        console.log("test "+data[i].Tm);
+        console.log("tem abre "+team[j].TeamAbr);
         if(data[i].Tm ==team[j].TeamAbr){
+          console.log("tem abre "+team[j].TeamAbr);
           stateAb = team[j].StateAbr;
            if (stateAb == " MN") {stateAb = "MN"};
+
           indexTeam = j;
+          console.log(indexTeam);
           console.log(team[indexTeam].City);
           break;
         }};
         stateVisited.push(stateAb+'');
-        try{        console.log(team[indexTeam].City);
-} catch{console.log(team[indexTeam]);}
+        
         if (stateAb == "ON") {bubbles.push(
         {
           city: team[indexTeam].City,
@@ -465,10 +469,8 @@ map.svg.selectAll('circle.datamaps-bubble').remove();}catch(error){console.log(e
 
       };
       arcs = [];
-      console.log(stateVisited);
       for (var i = 0; i < stateVisited.length-1; i++) {
-                  console.log(stateVisited[i]);
-                  console.log(stateVisited[i+1]);
+   
 
 
 
@@ -740,28 +742,31 @@ function clearBuffer(){
         }};
         if (StatsList.length < 1 ||selectedPlayers.length <1) {
           alert("Please select at least 1 player and 1 statistic to show!");
-        };
-        var stats = [StatsList];
 
+        }
+        else{
+        var stats = [];
+        var StatsListIndexes= [];
         var players = [];
         d3.csv("DATA/players_teams_seasons/"+tm+year+".csv").then (function(data) {
 
           for (var i = 0; i < data.length; i++) {
             for (var j = 0; j<selectedPlayers.length; j++) {
               var temp = [];
-              if (selectedPlayers[j] == data[i].Player+" "+year.slice(-2)) {
-                for(var k of StatsList){
-                  temp.push(Number(data[i][k]));
 
-                };
-                stats.push(temp);
+              if (selectedPlayers[j] == data[i].Player+" "+year.slice(-2)) {
+                                    
+                
+                  stats.push(data[i]);
+                console.log(stats)
                   }; // end if
                 };// end for j
               }; // end for i
 
-               updateDiagram(selectedPlayers, stats);
+               updateDiagram(selectedPlayers, stats, StatsList);
               return false;
     }); // end read csv
+      };
         return false;
 
       };
@@ -777,22 +782,24 @@ function clearBuffer(){
         return false;
       };
 
-      function  updateDiagram(selectedPlayers,s){
+      function  updateDiagram(selectedPlayers,s, StatsList){
+
         document.getElementById('selectPlayerMap').innerHTML = "";
-        BufferStats[0] = s[0];
-        for (var i=0;i<s.length-1; i++){
 
-         BufferStats.push(s[i+1]);
-       };
-       for (var k of selectedPlayers){
+        console.log(s[0]["3P"]+"s zero");
 
+
+       
+       for (var k=0; k<selectedPlayers.length; ++k){
         if(!(isInList(k,BufferPlayer))){
-          BufferPlayer.push(k);};
+          BufferPlayer.push(selectedPlayers[k]);
+          BufferStats.push(s[k]);
+
+        };
         };
 
         playersList = BufferPlayer;
-        stats = BufferStats;
-        console.log(BufferStats);
+        stats = constructStatArray(BufferStats, StatsList);
         drawChart();
         for (var player of BufferPlayer) {
           document.getElementById('selectPlayerMap').innerHTML += "<option value=\""+(player+'').replace(/ /g,"_")+"\">"+(player+'').slice(0,-3)+"</option>";
@@ -801,6 +808,21 @@ function clearBuffer(){
         document.getElementById('selectPlayerMap').innerHTML += "</select>";
         return false;
       };
+
+      function constructStatArray(stat, StatsList){
+        console.log(stat);
+        temp = [];
+        finale = [StatsList];
+        for (var i = 0; i < stat.length; i++) {
+          for (var k of StatsList) {
+          temp.push(stat[i][k]);
+        };
+        finale.push(temp);
+        temp=[];
+        };
+       console.log(finale);
+        return finale;
+      }
     </script>    </section><!-- #Visualisation -->
     
 

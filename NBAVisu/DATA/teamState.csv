@@ -1,6 +1,8 @@
 State,Team,TeamAbr,StateAbr,City
+Arizona,Phoenix Suns,PHO,AZ, Phoenix
 Arizona,Phoenix Suns,PHX,AZ, Phoenix
 California,Golden State Warriors,GSW,CA,San Fransisco
+Oklahoma,Oklahoma City Thunder,OKC,SEA, Oklahoma
 California,Los Angeles Clippers,LAC,CA,Los Angeles
 California,Los Angeles Lakers,LAL,CA,Los Angeles
 California,Sacramento Kings,SAC,CA, Sacramento
@@ -16,6 +18,7 @@ Michigan,Detroit Pistons,DET,MI,Detroit
 Minnesota,Minnesota Timberwolves,MIN,MN,Minnesota
 New York,Brooklyn Nets,BKN,NY, Brooklyn
 New York,New York Knicks,NYK,NY,New York
+Louisiana,New Orleans Pelicans,NOK,LA,New Orleans
 North Carolina,Charlotte Hornets,CHA,NC, Charlotte
 Ohio,Cleveland Cavaliers,CLE,OH, Cleveland
 Oklahoma,Oklahoma City Thunder,OKC,OK, Oklahoma
