@@ -791,7 +791,7 @@ function clearBuffer(){
 
        
        for (var k=0; k<selectedPlayers.length; ++k){
-        if(!(isInList(k,BufferPlayer))){
+        if(!(isInList(selectedPlayers[k],BufferPlayer))){
           BufferPlayer.push(selectedPlayers[k]);
           BufferStats.push(s[k]);
 
