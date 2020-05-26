@@ -5,8 +5,7 @@
   google.charts.load('current', {'packages':['sankey']});
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
-//console.log(playersList);
-//console.log(stats);
+
 
   var datatable1 = new google.visualization.DataTable();
   datatable1.addColumn('string', 'From');
@@ -32,8 +31,7 @@
   };
   for (var i =0; i<playersList.length; i++){
     for (var k = 0; k < stats[0].length; k++) {
-      console.log(stats);
-      console.log(playersList);
+
    
     datatable1.addRows([
      [ playersList[i], stats[0][k], Number(stats[i+1][k])]

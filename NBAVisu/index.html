@@ -431,16 +431,12 @@ map.svg.selectAll('circle.datamaps-bubble').remove();}catch(error){console.log(e
 
     for (var i = 0; i < data.length; i++) {
       for (var j = 0; j < team.length; j++) {
-        console.log("test "+data[i].Tm);
-        console.log("tem abre "+team[j].TeamAbr);
+        console.log(data[i].Tm + "" + team[j].TeamAbr);
         if(data[i].Tm ==team[j].TeamAbr){
-          console.log("tem abre "+team[j].TeamAbr);
           stateAb = team[j].StateAbr;
            if (stateAb == " MN") {stateAb = "MN"};
 
           indexTeam = j;
-          console.log(indexTeam);
-          console.log(team[indexTeam].City);
           break;
         }};
         stateVisited.push(stateAb+'');
@@ -810,7 +806,6 @@ function clearBuffer(){
       };
 
       function constructStatArray(stat, StatsList){
-        console.log(stat);
         temp = [];
         finale = [StatsList];
         for (var i = 0; i < stat.length; i++) {
@@ -820,7 +815,6 @@ function clearBuffer(){
         finale.push(temp);
         temp=[];
         };
-       console.log(finale);
         return finale;
       }
     </script>    </section><!-- #Visualisation -->
