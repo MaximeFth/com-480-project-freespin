@@ -741,10 +741,7 @@ function clearBuffer(){
 for (var checkboxP of checkboxesPlayers){
 
  if(!checkboxP.checked &&  BufferPlayer.includes(checkboxP.value.replace("_"," ")+" "+year.slice(-2))){
-  console.log(BufferPlayer);
-  console.log(checkboxP.value);
         var ind = BufferPlayer.indexOf(checkboxP.value.replace("_"," ")+" "+year.slice(-2));
-
           if (ind > -1) {
            BufferPlayer.splice(ind, 1);
             }
