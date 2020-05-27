@@ -681,10 +681,13 @@ function clearBuffer(){
       var year = document.getElementById("seasonSelect").value.toUpperCase();
       var tm = document.getElementById("teamSelect").value.toUpperCase();
       for (var checkboxP of checkboxesPlayers) {
+
+
         if (checkboxP.checked){
           selectedPlayers.push((checkboxP.value+'').replace("_"," ")+" "+year.slice(-2));
 
-        }};
+        }
+      };
         if (StatsList.length < 1 ||selectedPlayers.length <1) {
           return false;
 
@@ -729,10 +732,23 @@ function clearBuffer(){
       };
 
       function  updateDiagram(selectedPlayers,s, StatsList){
+          var year = document.getElementById("seasonSelect").value.toUpperCase();
+
+      var checkboxesPlayers = document.getElementsByName('selectedPlayers');
 
         document.getElementById('selectPlayerMap').innerHTML = "";
 
+for (var checkboxP of checkboxesPlayers){
 
+ if(!checkboxP.checked &&  BufferPlayer.includes(checkboxP.value.replace("_"," ")+" "+year.slice(-2))){
+  console.log(BufferPlayer);
+  console.log(checkboxP.value);
+        var ind = BufferPlayer.indexOf(checkboxP.value.replace("_"," ")+" "+year.slice(-2));
+
+          if (ind > -1) {
+           BufferPlayer.splice(ind, 1);
+            }
+        }};
 
 
         for (var k=0; k<selectedPlayers.length; ++k){
