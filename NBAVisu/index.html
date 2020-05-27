@@ -612,6 +612,8 @@ $('#teamSelect').niceSelect();
 
 
 function clearBuffer(){
+  document.getElementById('selectPlayerMap').innerHTML = "";
+
   var checkboxesPlayers = document.getElementsByName('selectedPlayers');
   var checkboxesStats = document.getElementsByName('selectedStat');
   for (var checkboxS of checkboxesStats) {
