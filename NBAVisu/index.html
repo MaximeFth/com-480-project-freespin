@@ -239,7 +239,7 @@
               <table>
                 <tr>
                   <td>
-                    <input type="checkbox" name = "selectedStat"  id="PTS"  value=PTS>
+                    <input type="checkbox" name = "selectedStat"  id="PTS"  value=PTS checked>
                     <font size =4><label for="PTS">Points</label></font><br>
                     <input type="checkbox" name = "selectedStat"  id="2P"  value=2P>
                     <font size =4><label for="2P">2Pts</label></font><br>
@@ -661,6 +661,7 @@ function clearBuffer(){
   };
 
   function readPlayers(event){
+
     var selectedPlayers = [];
     var StatsList = [];
     var checkboxesPlayers = document.getElementsByName('selectedPlayers');
@@ -697,7 +698,9 @@ function clearBuffer(){
             for (var i = 0; i < data.length; i++) {
               for (var j = 0; j<selectedPlayers.length; j++) {
                 var temp = [];
-
+        
+          document.getElementById('selectPlayerMap').innerHTML += "<option value=\""+(selectedPlayers[j]+'').replace(/ /g,"_")+"\">"+(selectedPlayers[j]+'').slice(0,-3)+"</option>";
+        
                 if (selectedPlayers[j] == data[i].Player+" "+year.slice(-2)) {
 
 
