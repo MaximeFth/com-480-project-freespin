@@ -11,9 +11,9 @@ Nothing more simple !
 Just visit our website and go to the Visualization section, I'm sure you'll have fun playing with what we developped !
 
 ## Dataset
-https://www.kaggle.com/justinas/nba-players-data
 
-https://www.kaggle.com/drgilermo/nba-players-stats
+- https://www.kaggle.com/justinas/nba-players-data
+- https://www.kaggle.com/drgilermo/nba-players-stats
 
 ## Screencast
 - to be uploaded
