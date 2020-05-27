@@ -147,7 +147,7 @@
           <div id="features">
             <font size="5">
               <label for="team-select"></label>
-              <select name="TeamsSelect" id="teamSelect">
+              <select name="TeamsSelect" id="teamSelect" onchange="return readTeamsAndYear()">
                 <option value="">--Select a Team--</option>
                 <option value="GSW">Golden State Warriors</option>
                 <option value="LAC">Los Angeles Clippers</option>
@@ -229,7 +229,7 @@
             <div id = "playersBox">
               <form id="players_selected", name= "playerSelection", onSubmit = "return readPlayers()"></form>
               <!-- clear button-->
-              <form name="test" id = "test" onSubmit="return clearBuffer()">
+              <form name="clearForm" id = "clearForm" onSubmit="return clearBuffer()">
               </form>
 
 
@@ -239,65 +239,77 @@
               <table>
                 <tr>
                   <td>
+                    <input type="checkbox" name = "selectedStat"  id="PTS"  value=PTS>
+                  <font size =4><label for="PTS">Points</label></font><br>
+                                    <input type="checkbox" name = "selectedStat"  id="2P"  value=2P>
+                  <font size =4><label for="2P">2Pts</label></font><br>
+                                    <input type="checkbox" name = "selectedStat"  id="3P"  value=3P>
+                  <font size =4><label for="3P">3Pts</label></font><br>
+                                    <input type="checkbox" name = "selectedStat"  id="FT"  value=FT>
+                  <font size =4><label for="FT">Free throws</label></font><br>
                     <input type="checkbox" name = "selectedStat"  id="G"  value=G>
                     <font size =4><label for="G">Games</label></font><br>
                     <input type="checkbox" name = "selectedStat"  id="GS"  value=GS>
                     <font size =4><label for="GS">Game started</label></font><br>
                     <input type="checkbox" name = "selectedStat"  id="PER"  value=PER>
                     <font size =4><label for="PER">Player efficiency rating</label></font><br>
-                    <input type="checkbox" name = "selectedStat"  id="FTr"  value=FTr>
+
+                                      <input type="checkbox" name = "selectedStat"  id="STL"  value=STL>
+                  <font size =4><label for="STL">Steals</label></font><br>
+                   <input type="checkbox" name = "selectedStat"  id="BLK"  value=BLK>
+                  <font size =4><label for="BLK">Blocks</label></font><br>
+
+
+
+
+                  </div>
+                </td>
+                <td>
+                                      <input type="checkbox" name = "selectedStat"  id="DRB"  value=DRB>
+                    <font size =4><label for="DRB">Defensive rebounds</label></font><br>
+                  <input type="checkbox" name = "selectedStat"  id="AST"  value=AST>
+                  <font size =4><label for="AST">Assists</label></font><br>
+
+                  <input type="checkbox" name = "selectedStat"  id="3PA"  value=3PA>
+                  <font size =4><label for="3PA">3Pts attempts</label></font><br>
+
+
+                  <input type="checkbox" name = "selectedStat"  id="2PA"  value=2PA>
+                  <font size =4><label for="2PA">2Pts attempts</label></font><br>
+
+                  <input type="checkbox" name = "selectedStat"  id="TOV"  value=TOV>
+                  <font size =4><label for="TOV">Turnovers</label></font><br>
+                  <input type="checkbox" name = "selectedStat"  id="FTA"  value=FTA>
+                  <font size =4><label for="FTA">Free throws attempts</label></font><br>
+                                    <input type="checkbox" name = "selectedStat"  id="ORB"  value=ORB>
+                  <font size =4><label for="ORB">Offensive rebounds</label></font><br>
+                                    <input type="checkbox" name = "selectedStat"  id="3P%"  value=3P%>
+                  <font size =4><label for="3P%">3Pts Percentage</label></font><br>
+                                      <input type="checkbox" name = "selectedStat"  id="FTr"  value=FTr>
                     <font size =4><label for="FTr">Free throw Percentage</label></font><br>
-                    <input type="checkbox" name = "selectedStat"  id="ORB%"  value=ORB%>
-                    <font size =4><label for="ORB%">Offensive rebound rate</label></font><br>
+
+                </td>
+                <td>
+
+
+                  <input type="checkbox" name = "selectedStat"  id="2P%"  value=2P%>
+                  <font size =4><label for="2P%">2Pts percentage</label></font><br>
+                  <input type="checkbox" name = "selectedStat"  id="ORB%"  value=ORB%>
+                  <font size =4><label for="ORB%">Offensive rebound rate</label></font><br>
+                  <input type="checkbox" name = "selectedStat"  id="FT%"  value=FT%>
+                  <font size =4><label for="FT%">Free throws Percentage</label></font><br>
+                  <input type="checkbox" name = "selectedStat"  id="USG%"  value=USG%>
+                  <font size =4><label for="USG%">Usage Percentage</label></font><br>
                     <input type="checkbox" name = "selectedStat"  id="DRB%"  value=DRB%>
                     <font size =4><label for="DRB%">Defensive Rebound rate</label></font><br>
                     <input type="checkbox" name = "selectedStat"  id="AST%"  value=AST%>
                     <font size =4><label for="AST%">Assist Percentage</label></font><br>
                     <input type="checkbox" name = "selectedStat"  id="STL%"  value=STL%>
                     <font size =4><label for="STL%">Steal Percentage</label></font><br>
-                    <input type="checkbox" name = "selectedStat"  id="TOV%"  value=TOV%>
-                    <font size =4><label for="TOV%">Turnover Percentage</label></font><br>
-                  </div>
-                </td>
-                <td>
-                  <input type="checkbox" name = "selectedStat"  id="3P"  value=3P>
-                  <font size =4><label for="3P">3Pts</label></font><br>
-                  <input type="checkbox" name = "selectedStat"  id="3PA"  value=3PA>
-                  <font size =4><label for="3PA">3Pts attempts</label></font><br>
-                  <input type="checkbox" name = "selectedStat"  id="3P%"  value=3P%>
-                  <font size =4><label for="3P%">3Pts Percentage</label></font><br>
-                  <input type="checkbox" name = "selectedStat"  id="2P"  value=2P>
-                  <font size =4><label for="2P">2Pts</label></font><br>
-                  <input type="checkbox" name = "selectedStat"  id="2PA"  value=2PA>
-                  <font size =4><label for="2PA">2Pts attempts</label></font><br>
-                  <input type="checkbox" name = "selectedStat"  id="2P%"  value=2P%>
-                  <font size =4><label for="2P%">2Pts percentage</label></font><br>
-                  <input type="checkbox" name = "selectedStat"  id="FT"  value=FT>
-                  <font size =4><label for="FT">Free throws</label></font><br>
-                  <input type="checkbox" name = "selectedStat"  id="FTA"  value=FTA>
-                  <font size =4><label for="FTA">Free throws attempts</label></font><br>
-                  <input type="checkbox" name = "selectedStat"  id="FT%"  value=FT%>
-                  <font size =4><label for="FT%">Free throws Percentage</label></font><br>
-                </td>
-                <td>
-                  <input type="checkbox" name = "selectedStat"  id="USG%"  value=USG%>
-                  <font size =4><label for="USG%">Usage Percentage</label></font><br>
-                  <input type="checkbox" name = "selectedStat"  id="ORB"  value=ORB>
-                  <font size =4><label for="ORB">Offensive rebounds</label></font><br>
-                  <input type="checkbox" name = "selectedStat"  id="DRB"  value=DRB>
-                  <font size =4><label for="DRB">Defensive rebounds</label></font><br>
-                  <input type="checkbox" name = "selectedStat"  id="AST"  value=AST>
-                  <font size =4><label for="AST">Assists</label></font><br>
-                  <input type="checkbox" name = "selectedStat"  id="STL"  value=STL>
-                  <font size =4><label for="STL">Steals</label></font><br>
-                  <input type="checkbox" name = "selectedStat"  id="BLK"  value=BLK>
-                  <font size =4><label for="BLK">Blocks</label></font><br>
-                  <input type="checkbox" name = "selectedStat"  id="TOV"  value=TOV>
-                  <font size =4><label for="TOV">Turnovers</label></font><br>
-                  <input type="checkbox" name = "selectedStat"  id="PTS"  value=PTS>
-                  <font size =4><label for="PTS">Points</label></font><br>
                   <input type="checkbox" name = "selectedStat"  id="BLK%"  value=BLK%>
                   <font size =4><label for="BLK%">Block Percentage</label></font><br>
+                  <input type="checkbox" name = "selectedStat"  id="TOV%"  value=TOV%>
+                  <font size =4><label for="TOV%">Turnover Percentage</label></font><br>
 
                 </td>
               </tr>
@@ -590,6 +602,7 @@ function readTeamsAndYear(event){
   var year = document.getElementById("seasonSelect").value.toUpperCase();
   var tm = document.getElementById("teamSelect").value.toUpperCase();
   var players = [];
+  if (year == "" || tm == "") {return false;};
 
   d3.csv("DATA/players_teams_seasons/"+tm+year+".csv").then (function(data) {
 
@@ -597,6 +610,7 @@ function readTeamsAndYear(event){
       players.push(data[i].Player);
       notNull = 1;
     };
+    document.getElementById('clearForm').innerHTML = "";
     document.getElementById('players_selected').innerHTML = "";
 
     (listToBoxes(players));
@@ -625,6 +639,11 @@ function clearBuffer(){
       }};
       BufferStats=[];
       BufferPlayer=[];
+      playersList = ['Player 1', 'Player 2'];
+      stats = [["free throws", "pts"],[50,40], [30,50]];
+
+      drawChart();
+
       return false;
     };
     function listToBoxes(mylist){
@@ -643,7 +662,7 @@ function clearBuffer(){
         document.getElementById('players_selected').innerHTML += "<font size=10>Data Not available. Try picking a later year.</font>";
       }
       else{        document.getElementById('players_selected').innerHTML += "<button class=\"submitLarge\" type = \"submit\">Make Sankey!</button>";
-      document.getElementById('test').innerHTML += "<input class=\"Clear\" name = \"submit\" type = \"submit\" value = \Clear!>";
+      document.getElementById('clearForm').innerHTML += "<input class=\"Clear\" name = \"submit\" type = \"submit\" value = \Clear!>";
 
     }
 
