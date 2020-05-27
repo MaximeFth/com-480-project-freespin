@@ -1,5 +1,5 @@
       var playersList = ['Player 1', 'Player 2'];
-      var stats = [["free throws", "pts"],[50,40], [30,50]];
+      var stats = [["Free Throws", "Points"],[50,40], [30,50]];
 
   google.charts.load('current', {'packages':['sankey']});
   google.charts.setOnLoadCallback(drawChart);
